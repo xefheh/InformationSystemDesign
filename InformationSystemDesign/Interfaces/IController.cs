@@ -5,7 +5,7 @@
         void AddCard(params object[] inputData);
         void RemoveCard(T card);
         void UpdateCard(T card, params object[] updatedData);
-        IRegistry<T> GetRepository();
+        IEnumerable<T> GetCards(params object[] filter);
         T GetCard(int cardId);
     }
 }
