@@ -7,8 +7,8 @@ namespace InformationSystemDesign.Cards
     {
         public AnimalCard(int regNumber, string address, AnimalType animalType,
             Sex sex, DateTime birthDate, int chipNumber,
-            string name, Bitmap photo, string specialSigns, 
-            IEnumerable<OwnerFeatures> ownerFeatures)
+            string name, string photo, string specialSigns, 
+            string ownerFeatures)
         {
             RegNumber = regNumber;
             Address = address;
@@ -37,11 +37,11 @@ namespace InformationSystemDesign.Cards
         [DisplayName("Кличка животного")]
         public string Name { get; private set; }
         [DisplayName("Фотография животного")]
-        public Bitmap Photo { get; private set; }
+        public string Photo { get; private set; }
         [DisplayName("Особые приметы")]
         public string SpecialSigns { get; private set; }
         [DisplayName("Наличие признаков владельца")]
-        public IEnumerable<OwnerFeatures> OwnerFeatures { get; private set; }
+        public string OwnerFeatures { get; private set; }
 
     }
 }

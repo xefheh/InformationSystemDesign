@@ -1,13 +1,15 @@
 ﻿using InformationSystemDesign.Interfaces;
 using InformationSystemDesign.Cards;
+using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Registers
 {
     internal class OrganizationRegistry : IRegistry<OrganizationCard>
     {
-        private readonly IList<OrganizationCard> _organizationCards;
-        public OrganizationRegistry() => _organizationCards = new List<OrganizationCard>();
+        private readonly DbSet<OrganizationCard> _organizationCards;
 
+        public OrganizationRegistry(DbSet<OrganizationCard> organizationCards) =>
+            _organizationCards = organizationCards;
         public void AddCard(OrganizationCard card) => _organizationCards.Add(card);
 
         public void RemoveCard(OrganizationCard card) => _organizationCards.Remove(card);

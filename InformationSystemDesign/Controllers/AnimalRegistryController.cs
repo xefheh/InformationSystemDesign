@@ -8,8 +8,8 @@ namespace InformationSystemDesign.Controllers
     {
         private readonly IRegistry<AnimalCard> _animalRegistry;
 
-        public AnimalRegistryController() => 
-            _animalRegistry = new AnimalRegistry();
+        public AnimalRegistryController(IRegistry<AnimalCard> animalRegistry) => 
+            _animalRegistry = animalRegistry;
 
         public void AddCard(params object[] inputData) =>
             _animalRegistry.AddCard(CreateCard(inputData));

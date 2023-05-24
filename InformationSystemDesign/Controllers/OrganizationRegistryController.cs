@@ -8,8 +8,8 @@ namespace InformationSystemDesign.Controllers
     {
         private readonly IRegistry<OrganizationCard> _organizationRegistry;
 
-        public OrganizationRegistryController() =>
-            _organizationRegistry = new OrganizationRegistry();
+        public OrganizationRegistryController(IRegistry<OrganizationCard> organizationRegistry) =>
+            _organizationRegistry = organizationRegistry;
 
         public void AddCard(params object[] inputData) =>
             _organizationRegistry.AddCard(CreateCard(inputData));

@@ -1,13 +1,14 @@
 ﻿using InformationSystemDesign.Cards;
 using InformationSystemDesign.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Registers
 {
     internal class AnimalRegistry : IRegistry<AnimalCard>
     {
-        private readonly IList<AnimalCard> _animalCards;
-        
-        public AnimalRegistry() => _animalCards = new List<AnimalCard>();
+        private readonly DbSet<AnimalCard> _animalCards;
+
+        public AnimalRegistry(DbSet<AnimalCard> animalCards) => _animalCards = animalCards;
 
         public void AddCard(AnimalCard card) => _animalCards.Add(card);
 

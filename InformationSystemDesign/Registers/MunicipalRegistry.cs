@@ -1,12 +1,15 @@
 ﻿using InformationSystemDesign.Interfaces;
 using InformationSystemDesign.Cards;
+using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Registers
 {
     internal class MunicipalRegistry : IRegistry<MunicipalCard>
+
     {
-        private readonly IList<MunicipalCard> _municipalCards;
-        public MunicipalRegistry() => _municipalCards = new List<MunicipalCard>();
+        private readonly DbSet<MunicipalCard> _municipalCards;
+        public MunicipalRegistry(DbSet<MunicipalCard> municipalCards) =>
+            _municipalCards = municipalCards;
 
         public void AddCard(MunicipalCard card) => _municipalCards.Add(card);
 

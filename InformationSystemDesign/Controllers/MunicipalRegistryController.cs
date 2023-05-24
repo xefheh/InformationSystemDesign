@@ -8,8 +8,8 @@ namespace InformationSystemDesign.Controllers
     {
         private readonly IRegistry<MunicipalCard> _municipalRegistry;
 
-        public MunicipalRegistryController() =>
-            _municipalRegistry = new MunicipalRegistry();
+        public MunicipalRegistryController(IRegistry<MunicipalCard> municipalRegistry) =>
+            _municipalRegistry = municipalRegistry;
 
         public void AddCard(params object[] inputData) =>
             _municipalRegistry.AddCard(CreateCard(inputData));
