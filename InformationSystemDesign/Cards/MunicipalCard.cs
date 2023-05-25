@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Cards
 {
+    [PrimaryKey(nameof(Number))]
     internal class MunicipalCard
     {
         public MunicipalCard(int number, DateTime signDate, 

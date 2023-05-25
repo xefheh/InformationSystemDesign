@@ -1,14 +1,16 @@
 ﻿using System.ComponentModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Cards
 {
+    [PrimaryKey(nameof(INN))]
     internal class OrganizationCard
     {
-        public OrganizationCard(string fullName, int inn, int kpp, string regAddress,
+        public OrganizationCard(int inn,string fullName, int kpp, string regAddress,
             string organizationType, string ownerType, string city)
         {
-            FullName = fullName;
             INN = inn;
+            FullName = fullName;
             KPP = kpp;
             RegAddress = regAddress;
             OrganizationType = organizationType;
@@ -16,21 +18,22 @@ namespace InformationSystemDesign.Cards
             City = city;
         }
 
-        [DisplayName("Полное наименование организации")]
-        public string FullName { get; private set; }
+        public OrganizationCard() { }
         [DisplayName("ИНН")]
-        public int INN { get; private set; }
+        public int INN { get; set; }
+        [DisplayName("Полное наименование организации")]
+        public string FullName { get; set; }
         [DisplayName("КПП")]
-        public int KPP { get; private set; }
+        public int KPP { get; set; }
         [DisplayName("Адрес регистрации")]
-        public string RegAddress { get; private set; }
+        public string RegAddress { get; set; }
         // TODO: change to concrete enumeration
         [DisplayName("Тип организации")]
-        public string OrganizationType { get; private set; }
+        public string OrganizationType { get; set; }
         // TODO: change to concrete enumeration
         [DisplayName("ИП/Юр. лицо")]
-        public string OwnerType { get; private set; }
+        public string OwnerType { get; set; }
         [DisplayName("Населённый пункт")]
-        public string City { get; private set; }
+        public string City { get; set; }
     }
 }
