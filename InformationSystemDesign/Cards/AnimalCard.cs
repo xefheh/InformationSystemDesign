@@ -2,12 +2,13 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using InformationSystemDesign.Enumerators;
+using InformationSystemDesign.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Cards
 {
     [PrimaryKey(nameof(RegNumber))]
-    internal class AnimalCard
+    public class AnimalCard
     {
         public AnimalCard(int regNumber, string address, AnimalType animalType,
             Sex sex, DateTime birthDate, int chipNumber,

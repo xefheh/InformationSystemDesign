@@ -1,4 +1,5 @@
-﻿using InformationSystemDesign.Cards;
+﻿using System.ComponentModel;
+using InformationSystemDesign.Cards;
 using InformationSystemDesign.Interfaces;
 using InformationSystemDesign.Registers;
 
@@ -23,9 +24,7 @@ namespace InformationSystemDesign.Controllers
         public void UpdateCard(OrganizationCard card, params object[] inputData) =>
             _organizationRegistry.UpdateCard(card, inputData);
 
-        // TODO: realize GetCards method;
-        public IEnumerable<OrganizationCard> GetCards(params object[] inputData) =>
-            throw new NotImplementedException();
+        public BindingList<OrganizationCard> GetCards(params object[] inputData) => _organizationRegistry.GetCards();
 
         // TODO: realize CreateCard method;
         private static OrganizationCard CreateCard(params object[] inputData)

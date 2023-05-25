@@ -1,6 +1,7 @@
 ﻿using InformationSystemDesign.Interfaces;
 using InformationSystemDesign.Cards;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
 namespace InformationSystemDesign.Registers
 {
@@ -20,5 +21,7 @@ namespace InformationSystemDesign.Registers
 
         public OrganizationCard GetCard(int cardId) => _organizationCards.First(card =>
             card.INN == cardId);
+
+        public BindingList<OrganizationCard> GetCards() => new(_organizationCards.ToList());
     }
 }

@@ -1,4 +1,5 @@
-﻿using InformationSystemDesign.Cards;
+﻿using System.ComponentModel;
+using InformationSystemDesign.Cards;
 using InformationSystemDesign.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,5 +21,7 @@ namespace InformationSystemDesign.Registers
 
         public AnimalCard GetCard(int cardId) => _animalCards.First(card =>
             card.RegNumber == cardId);
+
+        public BindingList<AnimalCard> GetCards() => new (_animalCards.ToList());
     }
 }

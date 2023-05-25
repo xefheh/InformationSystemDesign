@@ -1,4 +1,5 @@
-﻿using InformationSystemDesign.Cards;
+﻿using System.ComponentModel;
+using InformationSystemDesign.Cards;
 using InformationSystemDesign.Interfaces;
 using InformationSystemDesign.Registers;
 
@@ -23,11 +24,8 @@ namespace InformationSystemDesign.Controllers
         public void UpdateCard(AnimalCard card, params object[] inputData) =>
             _animalRegistry.UpdateCard(card, inputData);
 
-        // TODO: realize GetCards method;
-        public IEnumerable<AnimalCard> GetCards(params object[] inputData) =>
-            throw new NotImplementedException();
-
-        // TODO: realize CreateCard method;
+        public BindingList<AnimalCard> GetCards(params object[] inputData) => _animalRegistry.GetCards();
+        
         private static AnimalCard CreateCard(params object[] inputData)
             => throw new NotImplementedException();
     }

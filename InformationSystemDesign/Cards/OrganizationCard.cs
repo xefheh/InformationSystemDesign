@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using InformationSystemDesign.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Cards
 {
     [PrimaryKey(nameof(INN))]
-    internal class OrganizationCard
+    public class OrganizationCard
     {
         public OrganizationCard(int inn,string fullName, int kpp, string regAddress,
             string organizationType, string ownerType, string city)
@@ -19,7 +21,9 @@ namespace InformationSystemDesign.Cards
         }
 
         public OrganizationCard() { }
+
         [DisplayName("ИНН")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int INN { get; set; }
         [DisplayName("Полное наименование организации")]
         public string FullName { get; set; }

@@ -1,7 +1,9 @@
 using InformationSystemDesign.Cards;
 using InformationSystemDesign.Controllers;
+using InformationSystemDesign.Forms;
 using InformationSystemDesign.Interfaces;
 using InformationSystemDesign.Registers;
+using InformationSystemDesign.Forms;
 using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign
@@ -14,6 +16,13 @@ namespace InformationSystemDesign
         private static IController<AnimalCard> s_animalRegistryController;
         private static IController<OrganizationCard> s_organizationRegistryController;
         private static IController<MunicipalCard> s_municipalRegistryController;
+        public static AnimalRegistryForm AnimalRegistryForm =>
+            new (s_animalRegistryController);
+        public static OrganizationRegistryForm OrganizationRegistryForm =>
+            new (s_organizationRegistryController);
+        public static MunicipalRegistryForm MunicipalRegistryForm =>
+            new (s_municipalRegistryController);
+
 
 
         /// <summary>

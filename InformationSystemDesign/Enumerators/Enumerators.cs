@@ -1,12 +1,12 @@
 ﻿namespace InformationSystemDesign.Enumerators
 {
-    internal enum AnimalType
+    public enum AnimalType
     {
         Dog,
         Cat
     }
 
-    internal enum OwnerFeatures
+    public enum OwnerFeatures
     {
         Clothes,
         Chip,
@@ -14,7 +14,7 @@
         Harness
     }
 
-    internal enum Sex
+    public enum Sex
     {
         Male,
         Female
