@@ -3,9 +3,13 @@ using InformationSystemDesign.Interfaces;
 
 namespace InformationSystemDesign.Cards
 {
-    internal class InspectionCard
+    public class InspectionCard
     {
-        public InspectionCard(AnimalCard inspectedAnimal, string behaviourFeatures, string animalCondition, float bodyTemperature, string skinCover, string woolCondition, string injures, bool isNeedHelp, string diagnosis, string manipulations, bool isAssignedHelp, DateTime inspectionDate, string doctorFIO, string doctorPosition, string vetClinic, string municipalContract)
+        public InspectionCard(AnimalCard inspectedAnimal, string behaviourFeatures,
+            string animalCondition, float bodyTemperature, string skinCover,
+            string woolCondition, string injures, bool isNeedHelp, string diagnosis,
+            string manipulations, bool isAssignedHelp, DateTime inspectionDate,
+            string doctorFIO, string doctorPosition, string vetClinic, string municipalContract)
         {
             InspectedAnimal = inspectedAnimal;
             BehaviourFeatures = behaviourFeatures;

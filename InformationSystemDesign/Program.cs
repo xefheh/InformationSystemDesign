@@ -3,8 +3,7 @@ using InformationSystemDesign.Controllers;
 using InformationSystemDesign.Forms;
 using InformationSystemDesign.Interfaces;
 using InformationSystemDesign.Registers;
-using InformationSystemDesign.Forms;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace InformationSystemDesign
 {
@@ -16,6 +15,7 @@ namespace InformationSystemDesign
         private static IController<AnimalCard> s_animalRegistryController;
         private static IController<OrganizationCard> s_organizationRegistryController;
         private static IController<MunicipalCard> s_municipalRegistryController;
+
         public static AnimalRegistryForm AnimalRegistryForm =>
             new (s_animalRegistryController);
         public static OrganizationRegistryForm OrganizationRegistryForm =>
@@ -23,26 +23,31 @@ namespace InformationSystemDesign
         public static MunicipalRegistryForm MunicipalRegistryForm =>
             new (s_municipalRegistryController);
 
-
-
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            var inspectionContext = new InspectionContext();
-            InitializeRegistries(inspectionContext);
+            using var inspectionContext = new InspectionContext();
+            var storage = InitializeStorage(inspectionContext);
+            InitializeRegistries(storage);
             InitializeControllers();
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
         }
-        private static void InitializeRegistries(InspectionContext inspectionContext)
+
+        private static Storage InitializeStorage(InspectionContext inspectionContext) => 
+            new (inspectionContext.AnimalCards, inspectionContext.MunicipalCards,
+                inspectionContext.OrganizationCards);
+
+        private static void InitializeRegistries(Storage storage)
         {
-            s_animalRegistry = new AnimalRegistry(inspectionContext.AnimalCards);
-            s_organizationRegistry = new OrganizationRegistry(inspectionContext.OrganizationCards);
-            s_municipalRegistry = new MunicipalRegistry(inspectionContext.MunicipalCards);
+            s_animalRegistry = new AnimalRegistry(storage);
+            s_organizationRegistry = new OrganizationRegistry(storage);
+            s_municipalRegistry = new MunicipalRegistry(storage);
         }
+
         private static void InitializeControllers()
         {
             s_animalRegistryController = new AnimalRegistryController(s_animalRegistry);

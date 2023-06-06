@@ -1,22 +1,25 @@
-﻿namespace InformationSystemDesign.Enumerators
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace InformationSystemDesign.Enumerators
 {
     public enum AnimalType
     {
-        Dog,
-        Cat
+        Собака,
+        Кошка
     }
 
     public enum OwnerFeatures
     {
-        Clothes,
-        Chip,
-        Collar,
-        Harness
+        Одежда,
+        Чип,
+        Ошейник,
+        Шлейка
     }
 
     public enum Sex
     {
-        Male,
-        Female
+        Мужской,
+        Женский
     }
 }

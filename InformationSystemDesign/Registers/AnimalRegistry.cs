@@ -7,21 +7,20 @@ namespace InformationSystemDesign.Registers
 {
     internal class AnimalRegistry : IRegistry<AnimalCard>
     {
-        private readonly DbSet<AnimalCard> _animalCards;
+        private readonly Storage _storage;
 
-        public AnimalRegistry(DbSet<AnimalCard> animalCards) => _animalCards = animalCards;
+        public AnimalRegistry(Storage storage) => _storage = storage;
 
-        public void AddCard(AnimalCard card) => _animalCards.Add(card);
+        public void AddCard(AnimalCard card) => _storage.AddAnimalCard(card);
 
-        public void RemoveCard(AnimalCard card) => _animalCards.Remove(card);
+        public void RemoveCard(AnimalCard card) => _storage.RemoveAnimalCard(card);
 
         // TODO: realize UpdateCard method;
         public void UpdateCard(AnimalCard card, params object[] inputData) =>
             throw new NotImplementedException();
 
-        public AnimalCard GetCard(int cardId) => _animalCards.First(card =>
-            card.RegNumber == cardId);
+        public AnimalCard GetCard(int cardId) => _storage.GetAnimalCard(cardId);
 
-        public BindingList<AnimalCard> GetCards() => new (_animalCards.ToList());
+        public BindingList<AnimalCard> GetCards() => new (_storage.GetAnimalCards());
     }
 }

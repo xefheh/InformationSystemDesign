@@ -10,12 +10,11 @@ namespace InformationSystemDesign.Cards
     [PrimaryKey(nameof(RegNumber))]
     public class AnimalCard
     {
-        public AnimalCard(int regNumber, string address, AnimalType animalType,
+        public AnimalCard(string address, AnimalType animalType,
             Sex sex, DateTime birthDate, int chipNumber,
             string name, byte[] photo, string specialSigns,
             string ownerFeatures)
         {
-            RegNumber = regNumber;
             Address = address;
             AnimalType = animalType;
             Sex = sex;
