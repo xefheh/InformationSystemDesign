@@ -7,10 +7,9 @@ namespace InformationSystemDesign.Cards
     [PrimaryKey(nameof(Number))]
     public class MunicipalCard
     {
-        public MunicipalCard(int number, DateTime signDate, 
+        public MunicipalCard(DateTime signDate, 
             DateTime validateDate, string executor, string customer)
         {
-            Number = number;
             SignDate = signDate;
             ValidateDate = validateDate;
             Executor = executor;
@@ -18,14 +17,14 @@ namespace InformationSystemDesign.Cards
         }
 
         [DisplayName("Номер")]
-        public int Number { get; private set; }
+        public int Number { get; set; }
         [DisplayName("Дата заключения")]
-        public DateTime SignDate { get; private set; }
+        public DateTime SignDate { get; set; }
         [DisplayName("Дата действия")]
-        public DateTime ValidateDate { get; private set; }
+        public DateTime ValidateDate { get; set; }
         [DisplayName("Исполнитель")]
-        public string Executor { get; private set; }
+        public string Executor { get; set; }
         [DisplayName("Заказчик")]
-        public string Customer { get; private set; }
+        public string Customer { get; set; }
     }
 }

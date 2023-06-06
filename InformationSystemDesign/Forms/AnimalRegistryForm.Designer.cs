@@ -30,16 +30,23 @@
         {
             _registryView = new DataGridView();
             _addButton = new Button();
+            _openCard = new Button();
             ((System.ComponentModel.ISupportInitialize)_registryView).BeginInit();
             SuspendLayout();
             // 
             // _registryView
             // 
+            _registryView.AllowUserToAddRows = false;
+            _registryView.AllowUserToDeleteRows = false;
+            _registryView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            _registryView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            _registryView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             _registryView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            _registryView.Location = new Point(12, 75);
+            _registryView.Location = new Point(0, 87);
             _registryView.Name = "_registryView";
+            _registryView.ReadOnly = true;
             _registryView.RowTemplate.Height = 25;
-            _registryView.Size = new Size(776, 363);
+            _registryView.Size = new Size(800, 363);
             _registryView.TabIndex = 0;
             // 
             // _addButton
@@ -52,11 +59,22 @@
             _addButton.UseVisualStyleBackColor = true;
             _addButton.Click += _addButton_Click;
             // 
+            // _openCard
+            // 
+            _openCard.Location = new Point(174, 12);
+            _openCard.Name = "_openCard";
+            _openCard.Size = new Size(135, 23);
+            _openCard.TabIndex = 3;
+            _openCard.Text = "Открыть карту";
+            _openCard.UseVisualStyleBackColor = true;
+            _openCard.Click += _openButton_Click;
+            // 
             // AnimalRegistryForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(_openCard);
             Controls.Add(_addButton);
             Controls.Add(_registryView);
             Name = "AnimalRegistryForm";
@@ -69,5 +87,6 @@
 
         private DataGridView _registryView;
         private Button _addButton;
+        private Button _openCard;
     }
 }

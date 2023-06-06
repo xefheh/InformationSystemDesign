@@ -1,5 +1,6 @@
 
 
+using System.ComponentModel;
 using System.Drawing.Text;
 using Accessibility;
 using InformationSystemDesign.Cards;
@@ -9,49 +10,71 @@ namespace InformationSystemDesign.Interfaces
 {
     public class Storage
     {
-        private readonly DbSet<AnimalCard> _animalCards;
-        private readonly DbSet<MunicipalCard> _municipalCards;
-        private readonly DbSet<OrganizationCard> _organizationCards;
+        private readonly InspectionContext _context;
 
-        public Storage(DbSet<AnimalCard> animalCards,
-            DbSet<MunicipalCard> municipalCards,
-            DbSet<OrganizationCard> organizationCards)
+        public Storage(InspectionContext context)
         {
-            _animalCards = animalCards;
-            _municipalCards = municipalCards;
-            _organizationCards = organizationCards;
+            _context = context;
+            _context.AnimalCards.Load();
+            _context.OrganizationCards.Load();
+            _context.MunicipalCards.Load();
         }
 
-        public void AddAnimalCard(AnimalCard animalCard) =>
-            _animalCards.Add(animalCard);
+        public void AddAnimalCard(AnimalCard animalCard)
+        {
+            _context.AnimalCards.Add(animalCard);
+            _context.SaveChanges();
+        }
 
-        public void AddMunicipalCard(MunicipalCard municipalCard) =>
-            _municipalCards.Add(municipalCard);
+        public void AddMunicipalCard(MunicipalCard municipalCard)
+        {
+            _context.MunicipalCards.Add(municipalCard);
+            _context.SaveChanges();
+        }
 
-        public void AddOrganizationCard(OrganizationCard organizationCard) =>
-            _organizationCards.Add(organizationCard);
-        public void RemoveAnimalCard(AnimalCard animalCard) =>
-            _animalCards.Remove(animalCard);
+        public void AddOrganizationCard(OrganizationCard organizationCard)
+        {
+            _context.OrganizationCards.Add(organizationCard);
+            _context.SaveChanges();
+        }
 
-        public void RemoveMunicipalCard(MunicipalCard municipalCard) =>
-            _municipalCards.Remove(municipalCard);
+        public void RemoveAnimalCard(AnimalCard animalCard)
+        {
+            _context.AnimalCards.Remove(animalCard);
+            _context.SaveChanges();
+        }
 
-        public void RemoveOrganizationCard(OrganizationCard organizationCard) =>
-            _organizationCards.Remove(organizationCard);
+        public void RemoveMunicipalCard(MunicipalCard municipalCard)
+        {
+            _context.MunicipalCards.Remove(municipalCard);
+            _context.SaveChanges();
+        }
 
-        public AnimalCard GetAnimalCard(int id) =>
-            _animalCards.Find(id);
+        public void RemoveOrganizationCard(OrganizationCard organizationCard)
+        {
+            _context.OrganizationCards.Remove(organizationCard);
+            _context.SaveChanges();
 
-        public MunicipalCard GetMunicipalCard(int id) =>
-            _municipalCards.Find(id);
+        }
 
-        public OrganizationCard GetOrganizationCard(int id) =>
-            _organizationCards.Find(id);
+        public void SaveUpdates()
+        {
+            _context.SaveChanges();
+        }
 
-        public IList<AnimalCard> GetAnimalCards() => _animalCards.ToList();
+        public AnimalCard GetAnimalCard(object id) =>
+            _context.AnimalCards.Find(id);
 
-        public IList<MunicipalCard> GetMunicipalCards() => _municipalCards.ToList();
+        public MunicipalCard GetMunicipalCard(object id) =>
+            _context.MunicipalCards.Find(id);
 
-        public IList<OrganizationCard> GetOrganizationCards() => _organizationCards.ToList();
+        public OrganizationCard GetOrganizationCard(object id) =>
+            _context.OrganizationCards.Find(id);
+
+        public BindingList<AnimalCard> GetAnimalCards() => _context.AnimalCards.Local.ToBindingList();
+
+        public BindingList<MunicipalCard> GetMunicipalCards() => _context.MunicipalCards.Local.ToBindingList();
+
+        public BindingList<OrganizationCard> GetOrganizationCards() => _context.OrganizationCards.Local.ToBindingList();
     }
 }

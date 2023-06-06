@@ -8,6 +8,6 @@ namespace InformationSystemDesign.Interfaces
         void RemoveCard(T card);
         void UpdateCard(T card, params object[] updatedData);
         BindingList<T> GetCards(params object[] filter);
-        T GetCard(int cardId);
+        T GetCard(object identity);
     }
 }

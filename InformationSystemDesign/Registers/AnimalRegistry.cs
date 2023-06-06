@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using InformationSystemDesign.Cards;
+using InformationSystemDesign.Enumerators;
 using InformationSystemDesign.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,16 +12,37 @@ namespace InformationSystemDesign.Registers
 
         public AnimalRegistry(Storage storage) => _storage = storage;
 
-        public void AddCard(AnimalCard card) => _storage.AddAnimalCard(card);
+        public void AddCard(params object[] inputData) => 
+            _storage.AddAnimalCard(CreateCard(inputData));
 
         public void RemoveCard(AnimalCard card) => _storage.RemoveAnimalCard(card);
 
-        // TODO: realize UpdateCard method;
-        public void UpdateCard(AnimalCard card, params object[] inputData) =>
-            throw new NotImplementedException();
+        public void UpdateCard(AnimalCard card, params object[] inputData)
+        {
+            UpdateCardValues(card, inputData);
+            _storage.SaveUpdates();
+        }
 
-        public AnimalCard GetCard(int cardId) => _storage.GetAnimalCard(cardId);
+        public AnimalCard GetCard(object cardId) => _storage.GetAnimalCard(cardId);
 
-        public BindingList<AnimalCard> GetCards() => new (_storage.GetAnimalCards());
+        public BindingList<AnimalCard> GetCards() => _storage.GetAnimalCards();
+
+        public void UpdateCardValues(AnimalCard card, params object[] inputData)
+        {
+            card.Address = (string)inputData[0];
+            card.AnimalType = (AnimalType)inputData[1];
+            card.Sex = (Sex)inputData[2];
+            card.BirthDate = (DateTime)inputData[3];
+            card.ChipNumber = (int)inputData[4];
+            card.Name = (string)inputData[5];
+            card.Photo = (byte[])inputData[6];
+            card.SpecialSigns = (string)inputData[7];
+            card.OwnerFeatures = (string)inputData[8];
+        }
+
+        public AnimalCard CreateCard(params object[] inputData) =>
+            new ((string)inputData[0], (AnimalType)inputData[1],
+                (Sex)inputData[2], (DateTime)inputData[3], (int)inputData[4], (string)inputData[5],
+                (byte[])inputData[6], (string)inputData[7], (string)inputData[8]);
     }
 }

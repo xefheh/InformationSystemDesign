@@ -51,7 +51,11 @@
             _specBox = new TextBox();
             _specLabel = new Label();
             _okButton = new Button();
+            _showBox = new PictureBox();
+            _deleteButton = new Button();
+            _cancelButton = new Button();
             _ownerFeaturesGroup.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)_showBox).BeginInit();
             SuspendLayout();
             // 
             // _labelAddress
@@ -258,11 +262,43 @@
             _okButton.Text = "ОК";
             _okButton.UseVisualStyleBackColor = true;
             // 
+            // _showBox
+            // 
+            _showBox.Location = new Point(365, 162);
+            _showBox.Name = "_showBox";
+            _showBox.Size = new Size(423, 276);
+            _showBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            _showBox.TabIndex = 19;
+            _showBox.TabStop = false;
+            // 
+            // _deleteButton
+            // 
+            _deleteButton.Location = new Point(636, 12);
+            _deleteButton.Name = "_deleteButton";
+            _deleteButton.Size = new Size(152, 23);
+            _deleteButton.TabIndex = 20;
+            _deleteButton.Text = "Удалить карту";
+            _deleteButton.UseVisualStyleBackColor = true;
+            _deleteButton.Click += _deleteButton_Click;
+            // 
+            // _cancelButton
+            // 
+            _cancelButton.DialogResult = DialogResult.Cancel;
+            _cancelButton.Location = new Point(212, 382);
+            _cancelButton.Name = "_cancelButton";
+            _cancelButton.Size = new Size(73, 23);
+            _cancelButton.TabIndex = 21;
+            _cancelButton.Text = "Назад";
+            _cancelButton.UseVisualStyleBackColor = true;
+            // 
             // AnimalCardForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(_cancelButton);
+            Controls.Add(_deleteButton);
+            Controls.Add(_showBox);
             Controls.Add(_okButton);
             Controls.Add(_specBox);
             Controls.Add(_specLabel);
@@ -286,6 +322,7 @@
             Text = "AnimalCardForm";
             _ownerFeaturesGroup.ResumeLayout(false);
             _ownerFeaturesGroup.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)_showBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -315,5 +352,8 @@
         private TextBox _specBox;
         private Label _specLabel;
         private Button _okButton;
+        private PictureBox _showBox;
+        private Button _deleteButton;
+        private Button _cancelButton;
     }
 }

@@ -29,23 +29,51 @@
         private void InitializeComponent()
         {
             _registryView = new DataGridView();
+            _addButton = new Button();
+            _openButton = new Button();
             ((System.ComponentModel.ISupportInitialize)_registryView).BeginInit();
             SuspendLayout();
             // 
             // _registryView
             // 
+            _registryView.AllowUserToAddRows = false;
+            _registryView.AllowUserToDeleteRows = false;
+            _registryView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             _registryView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            _registryView.Location = new Point(13, 9);
+            _registryView.Location = new Point(13, 61);
             _registryView.Name = "_registryView";
+            _registryView.ReadOnly = true;
             _registryView.RowTemplate.Height = 25;
-            _registryView.Size = new Size(761, 429);
+            _registryView.Size = new Size(775, 377);
             _registryView.TabIndex = 0;
+            // 
+            // _addButton
+            // 
+            _addButton.Location = new Point(13, 12);
+            _addButton.Name = "_addButton";
+            _addButton.Size = new Size(75, 23);
+            _addButton.TabIndex = 1;
+            _addButton.Text = "Добавить";
+            _addButton.UseVisualStyleBackColor = true;
+            _addButton.Click += _addButton_Click;
+            // 
+            // _openButton
+            // 
+            _openButton.Location = new Point(115, 12);
+            _openButton.Name = "_openButton";
+            _openButton.Size = new Size(214, 23);
+            _openButton.TabIndex = 2;
+            _openButton.Text = "Открыть карточку";
+            _openButton.UseVisualStyleBackColor = true;
+            _openButton.Click += _openButton_Click;
             // 
             // OrganizationRegistryForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(_openButton);
+            Controls.Add(_addButton);
             Controls.Add(_registryView);
             Name = "OrganizationRegistryForm";
             Text = "OrganizationRegistryForm";
@@ -56,5 +84,7 @@
         #endregion
 
         private DataGridView _registryView;
+        private Button _addButton;
+        private Button _openButton;
     }
 }
