@@ -1,0 +1,6 @@
+﻿Сборка начата…
+1>------ Сборка начата: проект: InformationSystemDesign, Конфигурация: Debug Any CPU ------
+1>Анализаторы пропускаются для ускорения сборки. Для запуска анализаторов можно выполнить команды "Собрать" или "Пересобрать".
+1>InformationSystemDesign -> C:\Users\xefheh\source\repos\xefheh\InformationSystemDesign\InformationSystemDesign\bin\Debug\net6.0-windows\InformationSystemDesign.dll
+========== Сборка: успешно выполнено — 1 , со сбоем — 0, в актуальном состоянии — 0, пропущено — 0 ==========
+========== Сборка запущено в 11:35 PM, заняло 00,512 с ==========

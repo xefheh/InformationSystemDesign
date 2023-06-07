@@ -31,6 +31,7 @@
             _animalRegistryButton = new Button();
             _municipalRegistryButton = new Button();
             _organizationRegistryButton = new Button();
+            _reportButton = new Button();
             SuspendLayout();
             // 
             // _animalRegistryButton
@@ -63,16 +64,28 @@
             _organizationRegistryButton.UseVisualStyleBackColor = true;
             _organizationRegistryButton.Click += _organizationRegistryButton_Click;
             // 
+            // _reportButton
+            // 
+            _reportButton.Location = new Point(31, 190);
+            _reportButton.Name = "_reportButton";
+            _reportButton.Size = new Size(228, 23);
+            _reportButton.TabIndex = 3;
+            _reportButton.Text = "Отчёт";
+            _reportButton.UseVisualStyleBackColor = true;
+            _reportButton.Click += _reportButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(288, 225);
+            Controls.Add(_reportButton);
             Controls.Add(_organizationRegistryButton);
             Controls.Add(_municipalRegistryButton);
             Controls.Add(_animalRegistryButton);
             Name = "Form1";
             Text = "Form1";
+            FormClosing += Form1_FormClosing;
             ResumeLayout(false);
         }
 
@@ -81,5 +94,6 @@
         private Button _animalRegistryButton;
         private Button _municipalRegistryButton;
         private Button _organizationRegistryButton;
+        private Button _reportButton;
     }
 }

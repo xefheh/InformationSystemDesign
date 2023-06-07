@@ -1,6 +1,5 @@
 ﻿using InformationSystemDesign.Interfaces;
 using InformationSystemDesign.Cards;
-using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 
 namespace InformationSystemDesign.Registers
@@ -8,20 +7,35 @@ namespace InformationSystemDesign.Registers
     internal class MunicipalRegistry : IRegistry<MunicipalCard>
 
     {
-        private readonly DbSet<MunicipalCard> _municipalCards;
-        public MunicipalRegistry(DbSet<MunicipalCard> municipalCards) =>
-            _municipalCards = municipalCards;
+        private readonly Storage _storage;
+        public MunicipalRegistry(Storage storage) =>
+            _storage = storage;
 
-        public void AddCard(MunicipalCard card) => _municipalCards.Add(card);
+        public void AddCard(params object[] inputData) => _storage.AddMunicipalCard(CreateCard(inputData));
 
-        public void RemoveCard(MunicipalCard card) => _municipalCards.Remove(card);
+        public void RemoveCard(MunicipalCard card) => _storage.RemoveMunicipalCard(card);
 
-        // TODO: realize UpdateCard method;
-        public void UpdateCard(MunicipalCard card, params object[] inputData) =>
-            throw new NotImplementedException();
+        public void UpdateCard(MunicipalCard card, params object[] inputData)
+        {
+            UpdateCardValues(card, inputData);
+            _storage.SaveUpdates();
+        }
 
-        public MunicipalCard GetCard(int cardId) => _municipalCards.First(card =>
-            card.Number == cardId);
-        public BindingList<MunicipalCard> GetCards() => new(_municipalCards.ToList());
+        public MunicipalCard GetCard(object cardId) => _storage.GetMunicipalCard((int)cardId);
+        public BindingList<MunicipalCard> GetCards(params Predicate<MunicipalCard>[] filters) => _storage.GetMunicipalCards();
+
+        public void UpdateCardValues(MunicipalCard card, params object[] inputData)
+        {
+            card.SignDate = (DateTime)inputData[0];
+            card.ValidateDate = (DateTime)inputData[1];
+            card.Executor = (string)inputData[2];
+            card.Customer = (string)inputData[3];
+        }
+
+        public MunicipalCard CreateCard(params object[] inputData) =>
+            new((DateTime)inputData[0],
+                (DateTime)inputData[1],
+                (string)inputData[2],
+                (string)inputData[3]);
     }
 }

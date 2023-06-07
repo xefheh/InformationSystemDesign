@@ -1,65 +1,53 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using InformationSystemDesign.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Cards
 {
-    internal class InspectionCard
+    [PrimaryKey(nameof(InspectionNumber))]
+    public class InspectionCard
     {
-        public InspectionCard(AnimalCard inspectedAnimal, string behaviourFeatures, string animalCondition, float bodyTemperature, string skinCover, string woolCondition, string injures, bool isNeedHelp, string diagnosis, string manipulations, bool isAssignedHelp, DateTime inspectionDate, string doctorFIO, string doctorPosition, string vetClinic, string municipalContract)
-        {
-            InspectedAnimal = inspectedAnimal;
-            BehaviourFeatures = behaviourFeatures;
-            AnimalCondition = animalCondition;
-            BodyTemperature = bodyTemperature;
-            SkinCover = skinCover;
-            WoolCondition = woolCondition;
-            Injures = injures;
-            IsNeedHelp = isNeedHelp;
-            Diagnosis = diagnosis;
-            Manipulations = manipulations;
-            IsAssignedHelp = isAssignedHelp;
-            InspectionDate = inspectionDate;
-            DoctorFIO = doctorFIO;
-            DoctorPosition = doctorPosition;
-            VetClinic = vetClinic;
-            MunicipalContract = municipalContract;
-        }
+        [Browsable(false)]
+        public int InspectionNumber { get; set; }
 
-        [DisplayName("Осмотренное животное")]
-        public AnimalCard InspectedAnimal { get; private set; }
+        [Browsable(false)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [ForeignKey("InspectedAnimal")]
+        public int AnimalRegNumber { get; set; }
+        [Browsable(false)]
+        public AnimalCard InspectedAnimal { get; set; }
         [DisplayName("Особенности поведения")]
-        public string BehaviourFeatures { get; private set; }
+        public string BehaviourFeatures { get; set; }
         [DisplayName("Состояние животного")]
-        public string AnimalCondition { get; private set; }
+        public string AnimalCondition { get; set; }
         [DisplayName("Температура тела")]
-        public float BodyTemperature { get; private set; }
+        public float BodyTemperature { get; set; }
         [DisplayName("Кожные покровы")]
-        public string SkinCover { get; private set; }
+        public string SkinCover { get; set; }
         [DisplayName("Состояние шерсти")]
-        public string WoolCondition { get; private set; }
+        public string WoolCondition { get; set; }
         [DisplayName("Ранения, травмы и другие повреждения")]
-        public string Injures { get; private set; }
+        public string Injures { get; set; }
         [DisplayName("Требуется экстренная помощь")]
-        public bool IsNeedHelp { get; private set; }
+        public bool IsNeedHelp { get; set; }
         [DisplayName("Диагноз")]
-        public string Diagnosis { get; private set; }
+        public string Diagnosis { get; set; }
         [DisplayName("Проведённые манипуляции")]
-        public string Manipulations { get; private set; }
+        public string Manipulations { get; set; }
         [DisplayName("Назначено лечения")]
-        public bool IsAssignedHelp { get; private set; }
+        public bool IsAssignedHelp { get; set; }
         [DisplayName("Дата осмотра")]
-        public DateTime InspectionDate { get; private set; }
-        // TODO: change on concrete type
+        public DateTime InspectionDate { get; set; }
+
         [DisplayName("ФИО ветеринарного специалиста")]
-        public string DoctorFIO { get; private set; }
-        // TODO: change on concrete type
+        public string DoctorFIO { get; set; }
+
         [DisplayName("Должность ветеринарного специалиста")]
-        public string DoctorPosition { get; private set; }
-        // TODO: change on concrete type
+        public string DoctorPosition { get; set; }
         [DisplayName("Ветклиника, в которой проведён осмотр")]
-        public string VetClinic { get; private set; }
-        // TODO: change on concrete type
+        public string VetClinic { get; set; }
         [DisplayName("Муниципальный контракт")]
-        public string MunicipalContract { get; private set; }
+        public string MunicipalContract { get; set; }
     }
 }

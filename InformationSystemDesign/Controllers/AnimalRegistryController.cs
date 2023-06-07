@@ -5,28 +5,48 @@ using InformationSystemDesign.Registers;
 
 namespace InformationSystemDesign.Controllers
 {
-    internal class AnimalRegistryController : IController<AnimalCard>   
+    public class AnimalRegistryController : IController<AnimalCard>   
     {
         private readonly IRegistry<AnimalCard> _animalRegistry;
+        private readonly IPermissionAction _permissionAction;
 
-        public AnimalRegistryController(IRegistry<AnimalCard> animalRegistry) => 
+        public AnimalRegistryController(IRegistry<AnimalCard> animalRegistry, IPermissionAction permissionAction)
+        {
             _animalRegistry = animalRegistry;
+            _permissionAction = permissionAction;
+        }
 
-        public void AddCard(params object[] inputData) =>
-            _animalRegistry.AddCard(CreateCard(inputData));
+        public void AddCard(params object[] inputData)
+        {
+            if (!_permissionAction.CanAddCard()) throw new PermissionException("Can`t add new card!");
+            _animalRegistry.AddCard(inputData);
+        }
 
-        public AnimalCard GetCard(int cardId) =>
+        public AnimalCard GetCard(object cardId) =>
             _animalRegistry.GetCard(cardId);
 
-        public void RemoveCard(AnimalCard card) =>
+        public void RemoveCard(AnimalCard card)
+        {
+            if(!_permissionAction.CanRemoveCard()) throw new PermissionException("Can`t remove card!");
             _animalRegistry.RemoveCard(card);
+        }
 
-        public void UpdateCard(AnimalCard card, params object[] inputData) =>
+        public void UpdateCard(AnimalCard card, params object[] inputData)
+        {
+            if (!_permissionAction.CanUpdateCard()) throw new PermissionException("Can`t update card!");
             _animalRegistry.UpdateCard(card, inputData);
+        }
 
-        public BindingList<AnimalCard> GetCards(params object[] inputData) => _animalRegistry.GetCards();
-        
-        private static AnimalCard CreateCard(params object[] inputData)
-            => throw new NotImplementedException();
+        public BindingList<AnimalCard> GetCards(params Predicate<AnimalCard>[] inputData) => _animalRegistry.GetCards(inputData);
+
+        public void InvokeStorageUpdating() => ((AnimalRegistry)_animalRegistry).UpdateStorage();
+
+        public IEnumerable<InspectionCard> GetInspectionCardByAnimalId(int id) =>
+            (((AnimalRegistry)_animalRegistry).GetInspectionCardsByAnimalId(id));
+
+    }
+    public class PermissionException : Exception
+    {
+        public PermissionException(string message) : base(message) { }
     }
 }

@@ -4,11 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Interfaces
 {
-    internal sealed class InspectionContext : DbContext
+    public sealed class InspectionContext : DbContext
     {
         public DbSet<AnimalCard> AnimalCards { get; set; }
         public DbSet<MunicipalCard> MunicipalCards { get; set; }
         public DbSet<OrganizationCard> OrganizationCards { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<InspectionCard> InspectionCards { get; set; }
 
         public InspectionContext() => Database.EnsureCreated();
 
