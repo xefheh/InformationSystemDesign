@@ -28,12 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "ReportForm";
+            _reportGridView = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)_reportGridView).BeginInit();
+            SuspendLayout();
+            // 
+            // _reportGridView
+            // 
+            _reportGridView.AllowUserToAddRows = false;
+            _reportGridView.AllowUserToDeleteRows = false;
+            _reportGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            _reportGridView.Location = new Point(12, 12);
+            _reportGridView.Name = "_reportGridView";
+            _reportGridView.ReadOnly = true;
+            _reportGridView.RowTemplate.Height = 25;
+            _reportGridView.Size = new Size(776, 426);
+            _reportGridView.TabIndex = 0;
+            // 
+            // ReportForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(_reportGridView);
+            Name = "ReportForm";
+            Text = "ReportForm";
+            ((System.ComponentModel.ISupportInitialize)_reportGridView).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private DataGridView _reportGridView;
     }
 }

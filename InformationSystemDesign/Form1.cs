@@ -45,5 +45,11 @@ namespace InformationSystemDesign
         {
             Application.Exit();
         }
+
+        private void _reportButton_Click(object sender, EventArgs e)
+        {
+            new ReportCreateForm(new AnimalRegistryController(_animalRegistry, new AnimalPermissionAction(_user)))
+                .ShowDialog();
+        }
     }
 }

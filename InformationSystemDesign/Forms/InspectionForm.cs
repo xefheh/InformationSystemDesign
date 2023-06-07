@@ -4,9 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using InformationSystemDesign.Cards;
 
 namespace InformationSystemDesign.Forms
@@ -16,11 +13,11 @@ namespace InformationSystemDesign.Forms
         private readonly AnimalCard _animalCard;
         private readonly List<InspectionCard> _inspectionCards;
 
-        public InspectionForm(AnimalCard card, IEnumerable<InspectionCard> inspectionCards)
+        public InspectionForm(AnimalCard card, List<InspectionCard> inspectionCards)
         {
             InitializeComponent();
             _animalCard = card;
-            _inspectionCards = inspectionCards.ToList();
+            _inspectionCards = inspectionCards;
             UpdateDataSource();
         }
 

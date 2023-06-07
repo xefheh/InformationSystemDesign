@@ -100,7 +100,7 @@ namespace InformationSystemDesign.Forms
             var animalCard = GetCardFromSelectedRow();
             var inspectionCards =
                 ((AnimalRegistryController)_controller).GetInspectionCardByAnimalId(animalCard.RegNumber);
-            var inspectionForm = new InspectionForm(GetCardFromSelectedRow(), inspectionCards);
+            var inspectionForm = new InspectionForm(GetCardFromSelectedRow(), inspectionCards.ToList());
             inspectionForm.ShowDialog();
             ((AnimalRegistryController)_controller).InvokeStorageUpdating();
         }

@@ -53,6 +53,7 @@ namespace InformationSystemDesign.Cards
             }
         }
 
+        [Browsable(false)]
         public virtual ICollection<InspectionCard> InspectionCards { get; set; }
 
         public string GetLocale() => Address.Split(';')[0];

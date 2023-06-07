@@ -5,7 +5,7 @@ using InformationSystemDesign.Registers;
 
 namespace InformationSystemDesign.Controllers
 {
-    internal class AnimalRegistryController : IController<AnimalCard>   
+    public class AnimalRegistryController : IController<AnimalCard>   
     {
         private readonly IRegistry<AnimalCard> _animalRegistry;
         private readonly IPermissionAction _permissionAction;
@@ -37,7 +37,7 @@ namespace InformationSystemDesign.Controllers
             _animalRegistry.UpdateCard(card, inputData);
         }
 
-        public BindingList<AnimalCard> GetCards(Predicate<AnimalCard>[] inputData) => _animalRegistry.GetCards(inputData);
+        public BindingList<AnimalCard> GetCards(params Predicate<AnimalCard>[] inputData) => _animalRegistry.GetCards(inputData);
 
         public void InvokeStorageUpdating() => ((AnimalRegistry)_animalRegistry).UpdateStorage();
 

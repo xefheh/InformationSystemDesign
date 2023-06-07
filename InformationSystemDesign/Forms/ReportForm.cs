@@ -8,16 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using InformationSystemDesign.Controllers;
+using InformationSystemDesign.Interfaces;
 
 namespace InformationSystemDesign.Forms
 {
     public partial class ReportForm : Form
     {
-        private AnimalRegistryController _controller;
-        public ReportForm(AnimalRegistryController controller)
+        public ReportForm(List<ReportValue> reportValues)
         {
             InitializeComponent();
-            _controller = controller;
+            _reportGridView.DataSource = reportValues;
         }
     }
 }
