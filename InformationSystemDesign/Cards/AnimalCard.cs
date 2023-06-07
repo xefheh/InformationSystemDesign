@@ -52,5 +52,9 @@ namespace InformationSystemDesign.Cards
                     .Select(Enum.Parse<OwnerFeatures>).ToArray();
             }
         }
+
+        public virtual ICollection<InspectionCard> InspectionCards { get; set; }
+
+        public string GetLocale() => Address.Split(';')[0];
     }
 }

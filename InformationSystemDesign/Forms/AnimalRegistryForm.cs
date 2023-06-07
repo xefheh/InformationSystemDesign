@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using InformationSystemDesign.Cards;
 using InformationSystemDesign.Controllers;
+using InformationSystemDesign.Enumerators;
 using InformationSystemDesign.Interfaces;
 
 namespace InformationSystemDesign.Forms
@@ -8,14 +9,16 @@ namespace InformationSystemDesign.Forms
     public partial class AnimalRegistryForm : Form
     {
         private readonly IController<AnimalCard> _controller;
-        private readonly BindingList<AnimalCard> _sourceList;
+        private BindingList<AnimalCard> _sourceList;
+        private BindingList<AnimalCard> _view;
 
         public AnimalRegistryForm(IController<AnimalCard> controller)
         {
             InitializeComponent();
             _controller = controller;
             _sourceList = _controller.GetCards();
-            _registryView.DataSource = _sourceList;
+            _view = _sourceList;
+            _registryView.DataSource = _view;
             _registryView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
@@ -37,6 +40,11 @@ namespace InformationSystemDesign.Forms
         {
             if (_sourceList.Count == 0) return;
             var animalCard = GetCardFromSelectedRow();
+            OpenCard(animalCard);
+        }
+
+        private void OpenCard(AnimalCard animalCard)
+        {
             var animalCardForm = new AnimalCardForm(animalCard);
             var dialog = animalCardForm.ShowDialog();
             try
@@ -46,7 +54,7 @@ namespace InformationSystemDesign.Forms
                 _controller.UpdateCard(animalCard, animalCardForm.GetAnimalCardParams());
                 UpdateDataSource();
             }
-            catch(PermissionException)
+            catch (PermissionException)
             {
                 ShowPermitMessage();
             }
@@ -61,11 +69,40 @@ namespace InformationSystemDesign.Forms
         private void UpdateDataSource()
         {
             _registryView.DataSource = null;
-            _registryView.DataSource = _sourceList;
+            _registryView.DataSource = _view;
         }
 
         private void ShowPermitMessage() =>
             MessageBox.Show("Недостаточно прав для данного действия!", "Ошибка", MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
+
+        private void _openByIdButton_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(_idBox.Text, out var id))
+            {
+                var animalCard = _controller.GetCard(id);
+                if (animalCard != null)
+                {
+                    OpenCard(animalCard);
+                    return;
+                }
+                MessageBox.Show("Карты с таким номером не существует!", "Ошибка", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Некоректный id!", "Ошибка", MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        }
+
+        private void _inspectionButton_Click(object sender, EventArgs e)
+        {
+            if (_sourceList.Count == 0) return;
+            var animalCard = GetCardFromSelectedRow();
+            var inspectionCards =
+                ((AnimalRegistryController)_controller).GetInspectionCardByAnimalId(animalCard.RegNumber);
+            var inspectionForm = new InspectionForm(GetCardFromSelectedRow(), inspectionCards);
+            inspectionForm.ShowDialog();
+            ((AnimalRegistryController)_controller).InvokeStorageUpdating();
+        }
     }
 }

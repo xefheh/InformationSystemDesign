@@ -1,9 +1,11 @@
 
 
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Drawing.Text;
 using Accessibility;
 using InformationSystemDesign.Cards;
+using InformationSystemDesign.Enumerators;
 using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Interfaces
@@ -18,6 +20,7 @@ namespace InformationSystemDesign.Interfaces
             _context.AnimalCards.Load();
             _context.OrganizationCards.Load();
             _context.MunicipalCards.Load();
+            _context.InspectionCards.Load();
         }
 
         public void AddAnimalCard(AnimalCard animalCard)
@@ -72,6 +75,14 @@ namespace InformationSystemDesign.Interfaces
             _context.OrganizationCards.Find(id);
 
         public BindingList<AnimalCard> GetAnimalCards() => _context.AnimalCards.Local.ToBindingList();
+
+        public IEnumerable<InspectionCard> GetInspectionCardById(int id) =>
+            _context.InspectionCards.Local.Where(x => x.AnimalRegNumber == id);
+
+        public BindingList<AnimalCard> GetAnimalCards(Predicate<AnimalCard>[] filters)
+        {
+            return _context.AnimalCards.Local.ToBindingList();
+        }
 
         public BindingList<MunicipalCard> GetMunicipalCards() => _context.MunicipalCards.Local.ToBindingList();
 

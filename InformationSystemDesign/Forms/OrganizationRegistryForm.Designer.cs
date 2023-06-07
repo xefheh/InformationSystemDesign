@@ -31,6 +31,8 @@
             _registryView = new DataGridView();
             _addButton = new Button();
             _openButton = new Button();
+            _idBox = new TextBox();
+            _openByIdButton = new Button();
             ((System.ComponentModel.ISupportInitialize)_registryView).BeginInit();
             SuspendLayout();
             // 
@@ -49,7 +51,7 @@
             // 
             // _addButton
             // 
-            _addButton.Location = new Point(13, 12);
+            _addButton.Location = new Point(25, 3);
             _addButton.Name = "_addButton";
             _addButton.Size = new Size(75, 23);
             _addButton.TabIndex = 1;
@@ -59,7 +61,7 @@
             // 
             // _openButton
             // 
-            _openButton.Location = new Point(115, 12);
+            _openButton.Location = new Point(106, 3);
             _openButton.Name = "_openButton";
             _openButton.Size = new Size(214, 23);
             _openButton.TabIndex = 2;
@@ -67,11 +69,30 @@
             _openButton.UseVisualStyleBackColor = true;
             _openButton.Click += _openButton_Click;
             // 
+            // _idBox
+            // 
+            _idBox.Location = new Point(326, 3);
+            _idBox.Name = "_idBox";
+            _idBox.Size = new Size(100, 23);
+            _idBox.TabIndex = 3;
+            // 
+            // _openByIdButton
+            // 
+            _openByIdButton.Location = new Point(432, 3);
+            _openByIdButton.Name = "_openByIdButton";
+            _openByIdButton.Size = new Size(173, 23);
+            _openByIdButton.TabIndex = 4;
+            _openByIdButton.Text = "Получить карту по ИНН:";
+            _openByIdButton.UseVisualStyleBackColor = true;
+            _openByIdButton.Click += _openByIdButton_Click;
+            // 
             // OrganizationRegistryForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(_openByIdButton);
+            Controls.Add(_idBox);
             Controls.Add(_openButton);
             Controls.Add(_addButton);
             Controls.Add(_registryView);
@@ -79,6 +100,7 @@
             Text = "OrganizationRegistryForm";
             ((System.ComponentModel.ISupportInitialize)_registryView).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -86,5 +108,7 @@
         private DataGridView _registryView;
         private Button _addButton;
         private Button _openButton;
+        private TextBox _idBox;
+        private Button _openByIdButton;
     }
 }

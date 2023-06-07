@@ -31,6 +31,8 @@
             _registryView = new DataGridView();
             _addButton = new Button();
             _openButton = new Button();
+            _idBox = new TextBox();
+            _openByIdButton = new Button();
             ((System.ComponentModel.ISupportInitialize)_registryView).BeginInit();
             SuspendLayout();
             // 
@@ -66,11 +68,30 @@
             _openButton.UseVisualStyleBackColor = true;
             _openButton.Click += _openButton_Click;
             // 
+            // _idBox
+            // 
+            _idBox.Location = new Point(284, 13);
+            _idBox.Name = "_idBox";
+            _idBox.Size = new Size(133, 23);
+            _idBox.TabIndex = 3;
+            // 
+            // _openByIdButton
+            // 
+            _openByIdButton.Location = new Point(423, 13);
+            _openByIdButton.Name = "_openByIdButton";
+            _openByIdButton.Size = new Size(144, 23);
+            _openByIdButton.TabIndex = 4;
+            _openByIdButton.Text = "Открыть по номеру";
+            _openByIdButton.UseVisualStyleBackColor = true;
+            _openByIdButton.Click += _openByIdButton_Click;
+            // 
             // MunicipalRegistryForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(_openByIdButton);
+            Controls.Add(_idBox);
             Controls.Add(_openButton);
             Controls.Add(_addButton);
             Controls.Add(_registryView);
@@ -78,6 +99,7 @@
             Text = "MunicipalRegistryForm";
             ((System.ComponentModel.ISupportInitialize)_registryView).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -85,5 +107,7 @@
         private DataGridView _registryView;
         private Button _addButton;
         private Button _openButton;
+        private TextBox _idBox;
+        private Button _openByIdButton;
     }
 }

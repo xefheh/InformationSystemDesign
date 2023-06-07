@@ -37,6 +37,11 @@ namespace InformationSystemDesign.Forms
         {
             if (_registryView.SelectedRows.Count == 0) return;
             var municipalCard = GetCardFromSelectedRow();
+            OpenCard(municipalCard);
+        }
+
+        private void OpenCard(MunicipalCard municipalCard)
+        {
             var municipalCardForm = new MunicipalCardForm(municipalCard);
             var dialog = municipalCardForm.ShowDialog();
             try
@@ -66,5 +71,23 @@ namespace InformationSystemDesign.Forms
         private void ShowPermitMessage() =>
             MessageBox.Show("Недостаточно прав для данного действия!", "Ошибка", MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
+
+        private void _openByIdButton_Click(object sender, EventArgs e)
+        {
+            if (int.TryParse(_idBox.Text, out var id))
+            {
+                var municipalCard = _controller.GetCard(id);
+                if (municipalCard != null)
+                {
+                    OpenCard(municipalCard);
+                    return;
+                }
+                MessageBox.Show("Карты с таким номером не существует!", "Ошибка", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            MessageBox.Show("Некоректный id!", "Ошибка", MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
         }
+    }
 }

@@ -1,6 +1,5 @@
 ﻿using InformationSystemDesign.Interfaces;
 using InformationSystemDesign.Cards;
-using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using InformationSystemDesign.Enumerators;
 
@@ -25,7 +24,7 @@ namespace InformationSystemDesign.Registers
 
         public OrganizationCard GetCard(object cardId) => _storage.GetOrganizationCard((string)cardId);
 
-        public BindingList<OrganizationCard> GetCards() => _storage.GetOrganizationCards();
+        public BindingList<OrganizationCard> GetCards(params Predicate<OrganizationCard>[] filters) => _storage.GetOrganizationCards();
 
         public void UpdateCardValues(OrganizationCard card, params object[] inputData)
         {

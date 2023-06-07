@@ -38,6 +38,6 @@ namespace InformationSystemDesign.Controllers
             _organizationRegistry.UpdateCard(card, inputData);
         }
 
-        public BindingList<OrganizationCard> GetCards(params object[] inputData) => _organizationRegistry.GetCards();
+        public BindingList<OrganizationCard> GetCards(params Predicate<OrganizationCard>[] inputData) => _organizationRegistry.GetCards();
     }
 }

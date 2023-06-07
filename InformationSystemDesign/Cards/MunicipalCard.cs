@@ -26,5 +26,7 @@ namespace InformationSystemDesign.Cards
         public string Executor { get; set; }
         [DisplayName("Заказчик")]
         public string Customer { get; set; }
+        [Browsable(false)]
+        public List<InspectionCard> InspectionCard { get; set; }
     }
 }

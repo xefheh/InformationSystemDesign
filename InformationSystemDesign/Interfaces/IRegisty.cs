@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using InformationSystemDesign.Cards;
+﻿using System;
+using System.ComponentModel;
 
 namespace InformationSystemDesign.Interfaces
 {
@@ -11,6 +11,6 @@ namespace InformationSystemDesign.Interfaces
         void RemoveCard(T card);
         void UpdateCard(T card, params object[] inputData);
         T GetCard(object identity);
-        BindingList<T> GetCards();
+        BindingList<T> GetCards(params Predicate<T>[] filters);
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using InformationSystemDesign.Cards;
-using InformationSystemDesign.Enumerators;
 using InformationSystemDesign.Interfaces;
 using InformationSystemDesign.Registers;
 
@@ -38,7 +37,12 @@ namespace InformationSystemDesign.Controllers
             _animalRegistry.UpdateCard(card, inputData);
         }
 
-        public BindingList<AnimalCard> GetCards(params object[] inputData) => _animalRegistry.GetCards();
+        public BindingList<AnimalCard> GetCards(Predicate<AnimalCard>[] inputData) => _animalRegistry.GetCards(inputData);
+
+        public void InvokeStorageUpdating() => ((AnimalRegistry)_animalRegistry).UpdateStorage();
+
+        public IEnumerable<InspectionCard> GetInspectionCardByAnimalId(int id) =>
+            (((AnimalRegistry)_animalRegistry).GetInspectionCardsByAnimalId(id));
 
     }
     public class PermissionException : Exception

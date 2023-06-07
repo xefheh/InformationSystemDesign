@@ -31,6 +31,9 @@
             _registryView = new DataGridView();
             _addButton = new Button();
             _openCard = new Button();
+            _idBox = new TextBox();
+            _openByIdButton = new Button();
+            _inspectionButton = new Button();
             ((System.ComponentModel.ISupportInitialize)_registryView).BeginInit();
             SuspendLayout();
             // 
@@ -42,11 +45,11 @@
             _registryView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _registryView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllHeaders;
             _registryView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            _registryView.Location = new Point(0, 87);
+            _registryView.Location = new Point(0, 41);
             _registryView.Name = "_registryView";
             _registryView.ReadOnly = true;
             _registryView.RowTemplate.Height = 25;
-            _registryView.Size = new Size(800, 363);
+            _registryView.Size = new Size(800, 446);
             _registryView.TabIndex = 0;
             // 
             // _addButton
@@ -69,11 +72,41 @@
             _openCard.UseVisualStyleBackColor = true;
             _openCard.Click += _openButton_Click;
             // 
+            // _idBox
+            // 
+            _idBox.Location = new Point(350, 12);
+            _idBox.Name = "_idBox";
+            _idBox.Size = new Size(100, 23);
+            _idBox.TabIndex = 4;
+            // 
+            // _openByIdButton
+            // 
+            _openByIdButton.Location = new Point(456, 11);
+            _openByIdButton.Name = "_openByIdButton";
+            _openByIdButton.Size = new Size(114, 23);
+            _openByIdButton.TabIndex = 5;
+            _openByIdButton.Text = "Открыть по ID";
+            _openByIdButton.UseVisualStyleBackColor = true;
+            _openByIdButton.Click += _openByIdButton_Click;
+            // 
+            // _inspectionButton
+            // 
+            _inspectionButton.Location = new Point(586, 11);
+            _inspectionButton.Name = "_inspectionButton";
+            _inspectionButton.Size = new Size(121, 23);
+            _inspectionButton.TabIndex = 6;
+            _inspectionButton.Text = "Осмотры";
+            _inspectionButton.UseVisualStyleBackColor = true;
+            _inspectionButton.Click += _inspectionButton_Click;
+            // 
             // AnimalRegistryForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 487);
+            Controls.Add(_inspectionButton);
+            Controls.Add(_openByIdButton);
+            Controls.Add(_idBox);
             Controls.Add(_openCard);
             Controls.Add(_addButton);
             Controls.Add(_registryView);
@@ -81,6 +114,7 @@
             Text = "AnimalRegistryForm";
             ((System.ComponentModel.ISupportInitialize)_registryView).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -88,5 +122,8 @@
         private DataGridView _registryView;
         private Button _addButton;
         private Button _openCard;
+        private TextBox _idBox;
+        private Button _openByIdButton;
+        private Button _inspectionButton;
     }
 }

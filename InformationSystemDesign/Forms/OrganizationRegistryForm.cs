@@ -37,6 +37,11 @@ namespace InformationSystemDesign.Forms
         {
             if (_sourceList.Count == 0) return;
             var organizationCard = GetCardFromSelectedRow();
+            OpenCard(organizationCard);
+        }
+
+        private void OpenCard(OrganizationCard organizationCard)
+        {
             var organizationCardForm = new OrganizationCardForm(organizationCard);
             var dialog = organizationCardForm.ShowDialog();
             try
@@ -44,12 +49,14 @@ namespace InformationSystemDesign.Forms
                 if (organizationCardForm.DeleteAction) _controller.RemoveCard(organizationCard);
                 if (dialog != DialogResult.OK) return;
                 _controller.UpdateCard(organizationCard, organizationCardForm.GetOrganizationCardParams());
+                UpdateDataSource();
             }
             catch (PermissionException)
             {
                 ShowPermitMessage();
             }
         }
+
         private OrganizationCard GetCardFromSelectedRow()
         {
             var id = (string)_registryView.CurrentRow.Cells[0].Value;
@@ -64,5 +71,17 @@ namespace InformationSystemDesign.Forms
         private void ShowPermitMessage() =>
             MessageBox.Show("Недостаточно прав для данного действия!", "Ошибка", MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
+
+        private void _openByIdButton_Click(object sender, EventArgs e)
+        {
+            var organizationCard = _controller.GetCard(_idBox.Text);
+            if (organizationCard != null)
+            {
+                OpenCard(organizationCard);
+                return;
+            }
+            MessageBox.Show("Карты с таким номером не существует!", "Ошибка", MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+        }
     }
 }

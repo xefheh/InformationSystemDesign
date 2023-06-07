@@ -9,8 +9,8 @@ namespace InformationSystemDesign.Interfaces
         public DbSet<AnimalCard> AnimalCards { get; set; }
         public DbSet<MunicipalCard> MunicipalCards { get; set; }
         public DbSet<OrganizationCard> OrganizationCards { get; set; }
-
         public DbSet<User> Users { get; set; }
+        public DbSet<InspectionCard> InspectionCards { get; set; }
 
         public InspectionContext() => Database.EnsureCreated();
 

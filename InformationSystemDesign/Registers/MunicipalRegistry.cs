@@ -1,8 +1,6 @@
 ﻿using InformationSystemDesign.Interfaces;
 using InformationSystemDesign.Cards;
-using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
-using InformationSystemDesign.Enumerators;
 
 namespace InformationSystemDesign.Registers
 {
@@ -24,7 +22,7 @@ namespace InformationSystemDesign.Registers
         }
 
         public MunicipalCard GetCard(object cardId) => _storage.GetMunicipalCard((int)cardId);
-        public BindingList<MunicipalCard> GetCards() => _storage.GetMunicipalCards();
+        public BindingList<MunicipalCard> GetCards(params Predicate<MunicipalCard>[] filters) => _storage.GetMunicipalCards();
 
         public void UpdateCardValues(MunicipalCard card, params object[] inputData)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace InformationSystemDesign.Interfaces
 {
-    internal interface IPermissionAction
+    public interface IPermissionAction
     {
         bool CanRemoveCard();
         bool CanAddCard();

@@ -18,6 +18,7 @@ namespace InformationSystemDesign.Forms
         {
             InitializeComponent();
             DeleteAction = false;
+            _deleteButton.Visible = false;
             _typeOrgBox.DataSource = Enum.GetValues(typeof(OrganizationType));
             _ownerTypeBox.DataSource = Enum.GetValues(typeof(OwnerType));
         }
