@@ -45,5 +45,10 @@ namespace InformationSystemDesign.Forms
             Hide();
             Program.CreateMainFormInitializer(user).OpenMainForm();
         }
+
+        private void AuthorizationForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

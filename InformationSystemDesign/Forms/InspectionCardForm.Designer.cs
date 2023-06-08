@@ -354,7 +354,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "InspectionCardForm";
-            Text = "InspectionCardForm";
+            Text = "Карточка осмотра животного";
             ((System.ComponentModel.ISupportInitialize)_temperatureUpDown).EndInit();
             ResumeLayout(false);
             PerformLayout();

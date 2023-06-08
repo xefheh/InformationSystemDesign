@@ -215,7 +215,7 @@
             Controls.Add(_fullNameLabel);
             Controls.Add(_innLabel);
             Name = "OrganizationCardForm";
-            Text = "OrganizationCardForm";
+            Text = "Карточка организации";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -51,7 +51,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(_reportGridView);
             Name = "ReportForm";
-            Text = "ReportForm";
+            Text = "Отчёт";
             ((System.ComponentModel.ISupportInitialize)_reportGridView).EndInit();
             ResumeLayout(false);
         }

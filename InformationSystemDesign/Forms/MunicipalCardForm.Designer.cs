@@ -152,7 +152,7 @@
             Controls.Add(_validatePicker);
             Controls.Add(_signPicker);
             Name = "MunicipalCardForm";
-            Text = "MunicipalCardForm";
+            Text = "Муниципальная карточка";
             ResumeLayout(false);
             PerformLayout();
         }
