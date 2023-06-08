@@ -1,8 +1,5 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using InformationSystemDesign.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Cards
 {
@@ -45,5 +42,9 @@ namespace InformationSystemDesign.Cards
         public string VetClinic { get; set; }
         [DisplayName("Номер муниципального контракта")]
         public MunicipalCard MunicipalContract { get; set; }
+
+        public string GetAnimalLocale() => InspectedAnimal.GetLocale();
+
+        public List<LocalityCard> GetMunicipalLocalities() => MunicipalContract.GetLocalities();
     }
 }

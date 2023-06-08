@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
 using InformationSystemDesign.Cards;
 
 namespace InformationSystemDesign.Forms
@@ -14,7 +6,7 @@ namespace InformationSystemDesign.Forms
     public partial class LocalityForm : Form
     {
 
-        private BindingList<LocalityCard> _cards;
+        private readonly BindingList<LocalityCard> _cards;
         private List<LocalityCard> _choosenCities;
 
         public LocalityForm(BindingList<LocalityCard> cards)
@@ -44,6 +36,7 @@ namespace InformationSystemDesign.Forms
                 _choosenCities.Remove(currentCity);
                 currentRow.DefaultCellStyle.BackColor = Color.Empty;
             }
+            _localityView.ClearSelection();
         }
     }
 }

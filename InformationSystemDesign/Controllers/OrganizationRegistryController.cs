@@ -1,11 +1,11 @@
-﻿using System.ComponentModel;
+﻿using InformationSystemDesign.Exceptions;
+using System.ComponentModel;
 using InformationSystemDesign.Cards;
-using InformationSystemDesign.Enumerators;
 using InformationSystemDesign.Interfaces;
 
 namespace InformationSystemDesign.Controllers
 {
-    internal class OrganizationRegistryController : IController<OrganizationCard>
+    internal class OrganizationRegistryController : IController<OrganizationCard>, ILocalityController, IValidation
     {
         private readonly IRegistry<OrganizationCard> _organizationRegistry;
         private readonly IPermissionAction _permissionAction;
@@ -20,7 +20,7 @@ namespace InformationSystemDesign.Controllers
         public void AddCard(params object[] inputData)
         {
             if (!_permissionAction.CanAddCard()) throw new PermissionException("Can`t add card!");
-            if (!IsValidCard(inputData)) throw new ValidException("No valid card!");
+            if (!IsValid(inputData)) throw new ValidationException("No valid card!");
             _organizationRegistry.AddCard(inputData);
         }
 
@@ -36,23 +36,17 @@ namespace InformationSystemDesign.Controllers
         public void UpdateCard(OrganizationCard card, params object[] inputData)
         {
             if (!_permissionAction.CanUpdateCard()) throw new PermissionException("Can`t update card!");
-            if (!IsValidCard(inputData)) throw new ValidException("No valid card!");
+            if (!IsValid(inputData)) throw new ValidationException("No valid card!");
             _organizationRegistry.UpdateCard(card, inputData);
         }
 
-        private bool IsValidCard(params object[] inputData)
+        public bool IsValid(params object[] inputData)
         {
-            foreach (var property in inputData)
-            {
-                if (property.ToString() == "")
-                {
-                    return false;
-                }
-            }
-            return true;
+            return inputData.All(property => property is not (string and ""));
         }
 
+        public BindingList<OrganizationCard> GetCards() => _organizationRegistry.GetCards();
 
-        public BindingList<OrganizationCard> GetCards(params Predicate<OrganizationCard>[] inputData) => _organizationRegistry.GetCards();
+        public BindingList<LocalityCard> GetLocalities() => ((ILocalityRegistry)_organizationRegistry).GetLocalities();
     }
 }

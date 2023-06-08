@@ -32,6 +32,8 @@ namespace InformationSystemDesign.Cards
         [Browsable(false)]
         public virtual ICollection<InspectionCard> InspectionCards { get; set; }
 
+        public List<LocalityCard> GetLocalities() => LocalityCards.ToList();
+
         public override string ToString() => Number.ToString();
     }
 }

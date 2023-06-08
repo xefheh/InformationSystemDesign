@@ -28,69 +28,72 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            _loginButton = new Button();
-            label1 = new Label();
-            label2 = new Label();
-            SuspendLayout();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this._loginButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(65, 53);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(170, 23);
-            textBox1.TabIndex = 0;
+            this.textBox1.Location = new System.Drawing.Point(65, 53);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(170, 23);
+            this.textBox1.TabIndex = 0;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(65, 100);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(170, 23);
-            textBox2.TabIndex = 1;
+            this.textBox2.Location = new System.Drawing.Point(65, 100);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.PasswordChar = '*';
+            this.textBox2.Size = new System.Drawing.Size(170, 23);
+            this.textBox2.TabIndex = 1;
             // 
             // _loginButton
             // 
-            _loginButton.Location = new Point(89, 129);
-            _loginButton.Name = "_loginButton";
-            _loginButton.Size = new Size(123, 23);
-            _loginButton.TabIndex = 2;
-            _loginButton.Text = "Авторизация";
-            _loginButton.UseVisualStyleBackColor = true;
-            _loginButton.Click += _loginButton_Click;
+            this._loginButton.Location = new System.Drawing.Point(89, 129);
+            this._loginButton.Name = "_loginButton";
+            this._loginButton.Size = new System.Drawing.Size(123, 23);
+            this._loginButton.TabIndex = 2;
+            this._loginButton.Text = "Авторизация";
+            this._loginButton.UseVisualStyleBackColor = true;
+            this._loginButton.Click += new System.EventHandler(this._loginButton_Click);
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(128, 33);
-            label1.Name = "label1";
-            label1.Size = new Size(41, 15);
-            label1.TabIndex = 3;
-            label1.Text = "Логин";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(128, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 15);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Логин";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(124, 81);
-            label2.Name = "label2";
-            label2.Size = new Size(49, 15);
-            label2.TabIndex = 4;
-            label2.Text = "Пароль";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(124, 81);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 15);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Пароль";
             // 
             // AuthorizationForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(301, 191);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(_loginButton);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Name = "AuthorizationForm";
-            Text = "Авторизация";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(301, 191);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this._loginButton);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "AuthorizationForm";
+            this.Text = "Авторизация";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

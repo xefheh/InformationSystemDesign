@@ -2,10 +2,11 @@
 using InformationSystemDesign.Cards;
 using System.ComponentModel;
 using InformationSystemDesign.Enumerators;
+using InformationSystemDesign.StorageParts;
 
 namespace InformationSystemDesign.Registers
 {
-    internal class OrganizationRegistry : IRegistry<OrganizationCard>
+    internal class OrganizationRegistry : IRegistry<OrganizationCard>, ILocalityRegistry
     {
         private readonly Storage _storage;
 
@@ -24,7 +25,7 @@ namespace InformationSystemDesign.Registers
 
         public OrganizationCard GetCard(object cardId) => _storage.GetOrganizationCard((string)cardId);
 
-        public BindingList<OrganizationCard> GetCards(params Predicate<OrganizationCard>[] filters) => _storage.GetOrganizationCards();
+        public BindingList<OrganizationCard> GetCards() => _storage.GetOrganizationCards();
 
         public void UpdateCardValues(OrganizationCard card, params object[] inputData)
         {
@@ -41,5 +42,7 @@ namespace InformationSystemDesign.Registers
             new((string)inputData[0], (string)inputData[1], (string)inputData[2],
                 (string)inputData[3], (OrganizationType)inputData[4],
                 (OwnerType)inputData[5], (string)inputData[6]);
+
+        public BindingList<LocalityCard> GetLocalities() => _storage.GetLocalitiesCards();
     }
 }

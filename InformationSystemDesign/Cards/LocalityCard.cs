@@ -16,8 +16,9 @@ public class LocalityCard
     [DisplayName("Цена осмотра")]
     public decimal InspectionPrice { get; set; }
 
-    [Browsable(false)]
-    public ICollection<MunicipalCard> MunicipalCards { get; set; }
+    [Browsable(false)] public ICollection<MunicipalCard> MunicipalCards { get; set; }
+
+    [Browsable(false)] public ICollection<AnimalCard> AnimalCards { get; set; }
 
     public override string ToString() => Name;
 }

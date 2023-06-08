@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using InformationSystemDesign.Enumerators;
-using InformationSystemDesign.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Cards
@@ -10,12 +9,11 @@ namespace InformationSystemDesign.Cards
     [PrimaryKey(nameof(RegNumber))]
     public class AnimalCard
     {
-        public AnimalCard(string address, AnimalType animalType,
+        public AnimalCard(AnimalType animalType,
             Sex sex, DateTime birthDate, int chipNumber,
             string name, byte[] photo, string specialSigns,
             string ownerFeatures)
         {
-            Address = address;
             AnimalType = animalType;
             Sex = sex;
             BirthDate = birthDate;
@@ -27,12 +25,11 @@ namespace InformationSystemDesign.Cards
         }
 
         [DisplayName("Регистрационный номер")] public int RegNumber { get; set; }
-        [DisplayName("Населённый пункт")] public string Address { get; set; }
+        [DisplayName("Населённый пункт")] public virtual LocalityCard? Locality { get; set; }
         [DisplayName("Категория животного")] public AnimalType AnimalType { get; set; }
         [DisplayName("Пол животного")] public Sex Sex { get; set; }
 
-        [DisplayName("Год рождения"), DataType(DataType.Date), DisplayFormat(DataFormatString = "{0: dd/MM/YYYY}")] 
-        public DateTime BirthDate { get; set; }
+        [DisplayName("Год рождения"), DataType(DataType.Date), DisplayFormat(DataFormatString = "{0: dd/MM/YYYY}")] public DateTime BirthDate { get; set; }
 
         [DisplayName("Номер электронного чипа")] public int ChipNumber { get; set; }
 
@@ -56,6 +53,6 @@ namespace InformationSystemDesign.Cards
         [Browsable(false)]
         public virtual ICollection<InspectionCard> InspectionCards { get; set; }
 
-        public string GetLocale() => Address.Split(';')[0];
+        public string GetLocale() => Locality.Name;
     }
 }

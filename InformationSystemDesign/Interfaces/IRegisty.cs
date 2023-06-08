@@ -11,6 +11,6 @@ namespace InformationSystemDesign.Interfaces
         void RemoveCard(T card);
         void UpdateCard(T card, params object[] inputData);
         T GetCard(object identity);
-        BindingList<T> GetCards(params Predicate<T>[] filters);
+        BindingList<T> GetCards();
     }
 }

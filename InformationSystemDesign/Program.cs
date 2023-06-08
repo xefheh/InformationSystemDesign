@@ -1,8 +1,7 @@
 using InformationSystemDesign.Cards;
 using InformationSystemDesign.Controllers;
 using InformationSystemDesign.Forms;
-using InformationSystemDesign.Interfaces;
-using InformationSystemDesign.Registers;
+using InformationSystemDesign.Initialization;
 
 
 namespace InformationSystemDesign

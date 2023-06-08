@@ -7,14 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using InformationSystemDesign.Interfaces;
-using InformationSystemDesign.Registers;
+using InformationSystemDesign.Exceptions;
+using InformationSystemDesign.Initialization;
 
 namespace InformationSystemDesign.Forms
 {
     public partial class AuthorizationForm : Form
     {
-        private UserInformer _userInformer;
+        private readonly UserInformer _userInformer;
         public AuthorizationForm(UserInformer userInformer)
         {
             InitializeComponent();

@@ -36,6 +36,11 @@
             // 
             this._localityView.AllowUserToAddRows = false;
             this._localityView.AllowUserToDeleteRows = false;
+            this._localityView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._localityView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this._localityView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this._localityView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this._localityView.Location = new System.Drawing.Point(12, 12);
             this._localityView.Name = "_localityView";
@@ -51,7 +56,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this._localityView);
             this.Name = "LocalityForm";
-            this.Text = "CityTable";
+            this.Text = "Список городов";
             ((System.ComponentModel.ISupportInitialize)(this._localityView)).EndInit();
             this.ResumeLayout(false);
 

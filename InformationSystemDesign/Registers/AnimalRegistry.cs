@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using InformationSystemDesign.Cards;
 using InformationSystemDesign.Enumerators;
 using InformationSystemDesign.Interfaces;
-using Microsoft.EntityFrameworkCore;
+using InformationSystemDesign.StorageParts;
 
 namespace InformationSystemDesign.Registers
 {
-    internal class AnimalRegistry : IRegistry<AnimalCard>
+    internal class AnimalRegistry : IRegistry<AnimalCard>, ILocalityRegistry
     {
         private readonly Storage _storage;
 
@@ -26,18 +25,9 @@ namespace InformationSystemDesign.Registers
 
         public AnimalCard GetCard(object cardId) => _storage.GetAnimalCard(cardId);
 
-        public BindingList<AnimalCard> GetCards(params Predicate<AnimalCard>[] filters)
-        {
-            return filters.Length == 0 ? _storage.GetAnimalCards() :
-                new BindingList<AnimalCard>(_storage.GetAnimalCards().Where(animalCard => 
-                    filters.All(filter => filter(animalCard))).ToList());
-        }
-
-        public void UpdateStorage() => _storage.SaveUpdates();
-
         public void UpdateCardValues(AnimalCard card, params object[] inputData)
         {
-            card.Address = (string)inputData[0];
+            card.Locality = (LocalityCard)inputData[0];
             card.AnimalType = (AnimalType)inputData[1];
             card.Sex = (Sex)inputData[2];
             card.BirthDate = (DateTime)inputData[3];
@@ -49,11 +39,15 @@ namespace InformationSystemDesign.Registers
         }
 
         public AnimalCard CreateCard(params object[] inputData) =>
-            new ((string)inputData[0], (AnimalType)inputData[1],
+            new ((AnimalType)inputData[1],
                 (Sex)inputData[2], (DateTime)inputData[3], (int)inputData[4], (string)inputData[5],
-                (byte[])inputData[6], (string)inputData[7], (string)inputData[8]);
+                (byte[])inputData[6], (string)inputData[7], (string)inputData[8])
+            {
+                Locality = (LocalityCard)inputData[0]
+            };
 
-        public IEnumerable<InspectionCard> GetInspectionCardsByAnimalId(int animalId) =>
-            _storage.GetInspectionCardById(animalId);
+        public BindingList<AnimalCard> GetCards() => _storage.GetAnimalCards();
+
+        public BindingList<LocalityCard> GetLocalities() => _storage.GetLocalitiesCards();
     }
 }
