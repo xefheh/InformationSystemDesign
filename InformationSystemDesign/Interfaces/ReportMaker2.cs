@@ -55,7 +55,7 @@ namespace InformationSystemDesign.Interfaces
                 for (int j = 0; j < diseases.Count(); j++)
                 {
                     if (!dictionary[cards[i].GetLocale()].ContainsKey(diseases[i])) dictionary[cards[i].GetLocale()].Add(diseases[i], (0, 0));
-                    var price = currentInspectionCards[j].GetMunicipalCard().GetPrice(cards[i].GetLocale());
+                    var price = currentInspectionCards[j].MunicipalContract.GetPrice(cards[i].GetLocale());
                     var priceAndCount = dictionary[cards[i].GetLocale()][diseases[i]];
                     priceAndCount.Item1 += price;
                     priceAndCount.Item2 += 1;
@@ -84,23 +84,11 @@ namespace InformationSystemDesign.Interfaces
         }
     }
 
-    public static class InspectionCardExtensions
-    {
-        internal static MunicipalCard GetMunicipalCard(this InspectionCard card)
-        {
-            throw new NotImplementedException();    
-        }
-    }
-
     public static class MunicipalCardExtensions
     {
-        public static Dictionary<string, double> LocalePrices = new Dictionary<string, double>();
-
         public static double GetPrice(this MunicipalCard card, string locale)
         {
-            if (!LocalePrices.ContainsKey(locale))
-                throw new Exception("Don`t contains this locale!");
-            return LocalePrices[locale];
+            return (double)card.LocalityCards.First(card => card.Name == locale).InspectionPrice;
         }
     }
 
