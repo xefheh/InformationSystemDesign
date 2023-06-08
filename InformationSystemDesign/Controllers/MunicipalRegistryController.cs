@@ -20,6 +20,7 @@ namespace InformationSystemDesign.Controllers
         public void AddCard(params object[] inputData)
         {
             if (!_permissionAction.CanAddCard()) throw new PermissionException("Can`t add card!");
+            if (!IsValidCard(inputData)) throw new ValidException("No valid card!");
             _municipalRegistry.AddCard(inputData);
         }
 
@@ -35,8 +36,22 @@ namespace InformationSystemDesign.Controllers
         public void UpdateCard(MunicipalCard card, params object[] inputData)
         {
             if (!_permissionAction.CanUpdateCard()) throw new PermissionException("Can`t update card!");
+            if (!IsValidCard(inputData)) throw new ValidException("No valid card!");
             _municipalRegistry.UpdateCard(card, inputData);
         }
+
+        private bool IsValidCard(params object[] inputData)
+        {
+            foreach (var property in inputData)
+            {
+                if (property.ToString() == "")
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
 
         public BindingList<MunicipalCard> GetCards(params Predicate<MunicipalCard>[] inputData) => _municipalRegistry.GetCards();
     }

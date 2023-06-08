@@ -89,7 +89,6 @@
             Controls.Add(textBox1);
             Name = "AuthorizationForm";
             Text = "Авторизация";
-            Load += AuthorizationForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
