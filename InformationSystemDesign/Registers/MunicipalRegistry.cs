@@ -1,10 +1,11 @@
 ﻿using InformationSystemDesign.Interfaces;
 using InformationSystemDesign.Cards;
 using System.ComponentModel;
+using InformationSystemDesign.StorageParts;
 
 namespace InformationSystemDesign.Registers
 {
-    internal class MunicipalRegistry : IRegistry<MunicipalCard>
+    internal class MunicipalRegistry : IRegistry<MunicipalCard>, ILocalityRegistry
 
     {
         private readonly Storage _storage;
@@ -21,8 +22,10 @@ namespace InformationSystemDesign.Registers
             _storage.SaveUpdates();
         }
 
+        public BindingList<LocalityCard> GetLocalitiesFromStorage() => _storage.GetLocalitiesCards();
+
         public MunicipalCard GetCard(object cardId) => _storage.GetMunicipalCard((int)cardId);
-        public BindingList<MunicipalCard> GetCards(params Predicate<MunicipalCard>[] filters) => _storage.GetMunicipalCards();
+        public BindingList<MunicipalCard> GetCards() => _storage.GetMunicipalCards();
 
         public void UpdateCardValues(MunicipalCard card, params object[] inputData)
         {
@@ -32,10 +35,18 @@ namespace InformationSystemDesign.Registers
             card.Customer = (string)inputData[3];
         }
 
-        public MunicipalCard CreateCard(params object[] inputData) =>
-            new((DateTime)inputData[0],
+        public MunicipalCard CreateCard(params object[] inputData)
+        {
+            var municipalCard = new MunicipalCard((DateTime)inputData[0],
                 (DateTime)inputData[1],
                 (string)inputData[2],
                 (string)inputData[3]);
+            municipalCard.LocalityCards ??= new List<LocalityCard>();
+            foreach(var locality in (List<LocalityCard>) inputData[4])
+                municipalCard.LocalityCards.Add(locality);
+            return municipalCard;
+        }
+
+        public BindingList<LocalityCard> GetLocalities() => _storage.GetLocalitiesCards();
     }
 }

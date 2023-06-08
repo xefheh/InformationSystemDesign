@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using InformationSystemDesign.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Cards
@@ -26,7 +25,15 @@ namespace InformationSystemDesign.Cards
         public string Executor { get; set; }
         [DisplayName("Заказчик")]
         public string Customer { get; set; }
+
         [Browsable(false)]
-        public List<InspectionCard> InspectionCard { get; set; }
+        public virtual ICollection<LocalityCard> LocalityCards { get; set; }
+
+        [Browsable(false)]
+        public virtual ICollection<InspectionCard> InspectionCards { get; set; }
+
+        public List<LocalityCard> GetLocalities() => LocalityCards.ToList();
+
+        public override string ToString() => Number.ToString();
     }
 }

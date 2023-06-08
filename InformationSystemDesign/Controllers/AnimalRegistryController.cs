@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel;
 using InformationSystemDesign.Cards;
+using InformationSystemDesign.Exceptions;
 using InformationSystemDesign.Interfaces;
-using InformationSystemDesign.Registers;
 
 namespace InformationSystemDesign.Controllers
 {
-    public class AnimalRegistryController : IController<AnimalCard>   
+    public class AnimalRegistryController : IController<AnimalCard>, ILocalityController, IValidation
     {
         private readonly IRegistry<AnimalCard> _animalRegistry;
         private readonly IPermissionAction _permissionAction;
@@ -16,9 +16,12 @@ namespace InformationSystemDesign.Controllers
             _permissionAction = permissionAction;
         }
 
+        public BindingList<AnimalCard> GetCards() => _animalRegistry.GetCards();
+
         public void AddCard(params object[] inputData)
         {
             if (!_permissionAction.CanAddCard()) throw new PermissionException("Can`t add new card!");
+            if (!IsValid(inputData)) throw new ValidationException("No valid card!");
             _animalRegistry.AddCard(inputData);
         }
 
@@ -34,19 +37,25 @@ namespace InformationSystemDesign.Controllers
         public void UpdateCard(AnimalCard card, params object[] inputData)
         {
             if (!_permissionAction.CanUpdateCard()) throw new PermissionException("Can`t update card!");
+            if (!IsValid(inputData)) throw new ValidationException("No valid card!");
             _animalRegistry.UpdateCard(card, inputData);
         }
 
-        public BindingList<AnimalCard> GetCards(params Predicate<AnimalCard>[] inputData) => _animalRegistry.GetCards(inputData);
+        public bool IsValid(params object[] inputData)
+        {
+            foreach (var property in inputData)
+            {
+                switch (property)
+                {
+                    case string and "":
+                    case byte[] photo when photo == Array.Empty<byte>():
+                    case null:
+                        return false;
+                }
+            }
+            return true;
+        }
 
-        public void InvokeStorageUpdating() => ((AnimalRegistry)_animalRegistry).UpdateStorage();
-
-        public IEnumerable<InspectionCard> GetInspectionCardByAnimalId(int id) =>
-            (((AnimalRegistry)_animalRegistry).GetInspectionCardsByAnimalId(id));
-
-    }
-    public class PermissionException : Exception
-    {
-        public PermissionException(string message) : base(message) { }
-    }
+        public BindingList<LocalityCard> GetLocalities() => ((ILocalityRegistry)_animalRegistry).GetLocalities();
+    }   
 }
