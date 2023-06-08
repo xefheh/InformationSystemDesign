@@ -13,7 +13,6 @@ namespace InformationSystemDesign.Forms
         private readonly IController<MunicipalCard> _municipalRegistryController;
         private readonly IController<OrganizationCard> _organizationRegistryController;
         private readonly IController<InspectionCard> _inspectionRegistryController;
-        private readonly BindingList<LocalityCard> _localitiesCards;
 
         public MainForm(IController<AnimalCard> animalRegistryController, IController<MunicipalCard> municipalRegistryController,
             IController<OrganizationCard> organizationRegistryController, IController<InspectionCard> inspectionRegistryController)
@@ -26,7 +25,7 @@ namespace InformationSystemDesign.Forms
         }
 
         private void _animalRegistryButton_Click(object sender, EventArgs e) =>
-            new AnimalRegistryForm(_animalRegistryController, _inspectionRegistryController, _localitiesCards).ShowDialog();
+            new AnimalRegistryForm(_animalRegistryController, _inspectionRegistryController).ShowDialog();
 
         private void _municipalRegistryButton_Click(object sender, EventArgs e) =>
             new MunicipalRegistryForm(_municipalRegistryController).ShowDialog();

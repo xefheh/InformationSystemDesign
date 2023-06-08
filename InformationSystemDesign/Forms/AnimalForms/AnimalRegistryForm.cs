@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using InformationSystemDesign.Cards;
 using InformationSystemDesign.Exceptions;
+using InformationSystemDesign.Forms.InspectionForms;
 using InformationSystemDesign.Interfaces;
 
 namespace InformationSystemDesign.Forms.AnimalForms
@@ -11,8 +12,7 @@ namespace InformationSystemDesign.Forms.AnimalForms
         private readonly IController<InspectionCard> _inspectionRegistryController;
         private readonly BindingList<AnimalCard> _sourceList;
 
-        public AnimalRegistryForm(IController<AnimalCard> controller, IController<InspectionCard> inspectionRegistryController,
-            BindingList<LocalityCard> localityList)
+        public AnimalRegistryForm(IController<AnimalCard> controller, IController<InspectionCard> inspectionRegistryController)
         {
             InitializeComponent();
             _controller = controller;

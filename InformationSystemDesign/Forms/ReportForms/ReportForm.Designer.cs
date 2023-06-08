@@ -66,6 +66,7 @@
             // 
             this._gerenalDiseasesBox.Location = new System.Drawing.Point(197, 5);
             this._gerenalDiseasesBox.Name = "_gerenalDiseasesBox";
+            this._gerenalDiseasesBox.ReadOnly = true;
             this._gerenalDiseasesBox.Size = new System.Drawing.Size(190, 23);
             this._gerenalDiseasesBox.TabIndex = 2;
             // 
@@ -73,6 +74,7 @@
             // 
             this._generalInspectionBox.Location = new System.Drawing.Point(585, 5);
             this._generalInspectionBox.Name = "_generalInspectionBox";
+            this._generalInspectionBox.ReadOnly = true;
             this._generalInspectionBox.Size = new System.Drawing.Size(190, 23);
             this._generalInspectionBox.TabIndex = 4;
             // 
