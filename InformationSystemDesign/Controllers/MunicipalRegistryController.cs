@@ -5,7 +5,7 @@ using InformationSystemDesign.Registers;
 
 namespace InformationSystemDesign.Controllers
 {
-    internal class MunicipalRegistryController : IController<MunicipalCard>
+    public class MunicipalRegistryController : IController<MunicipalCard>
     {
         private readonly IRegistry<MunicipalCard> _municipalRegistry;
         private readonly IPermissionAction _permissionAction;
@@ -40,6 +40,9 @@ namespace InformationSystemDesign.Controllers
             _municipalRegistry.UpdateCard(card, inputData);
         }
 
+        public BindingList<LocalityCard> GetLocalities() =>
+            ((MunicipalRegistry)_municipalRegistry).GetLocalitiesFromStorage();
+            
         private bool IsValidCard(params object[] inputData)
         {
             foreach (var property in inputData)
@@ -51,8 +54,7 @@ namespace InformationSystemDesign.Controllers
             }
             return true;
         }
-
-
+        
         public BindingList<MunicipalCard> GetCards(params Predicate<MunicipalCard>[] inputData) => _municipalRegistry.GetCards();
     }
 }

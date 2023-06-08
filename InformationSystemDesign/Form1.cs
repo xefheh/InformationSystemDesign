@@ -26,7 +26,8 @@ namespace InformationSystemDesign
         private void _animalRegistryButton_Click(object sender, EventArgs e)
         {
             new AnimalRegistryForm(new AnimalRegistryController(_animalRegistry,
-                new AnimalPermissionAction(_user))).ShowDialog();
+                new AnimalPermissionAction(_user)), new MunicipalRegistryController(_municipalRegistry,
+                null)).ShowDialog();
         }
 
         private void _municipalRegistryButton_Click(object sender, EventArgs e)

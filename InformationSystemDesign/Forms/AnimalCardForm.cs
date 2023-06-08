@@ -64,8 +64,10 @@ namespace InformationSystemDesign.Forms
 
         private void _pathButton_Click(object sender, EventArgs e)
         {
-            var ofd = new OpenFileDialog();
-            ofd.Filter = "Images|*.png;*.jpeg;*.gif;*.bmp;*.jpg";
+            var ofd = new OpenFileDialog
+            {
+                Filter = "Images|*.png;*.jpeg;*.gif;*.bmp;*.jpg"
+            };
             if (ofd.ShowDialog() != DialogResult.OK) return;
             _pathToPhoto = ofd.FileName;
             _photoPathBox.Text = _pathToPhoto;

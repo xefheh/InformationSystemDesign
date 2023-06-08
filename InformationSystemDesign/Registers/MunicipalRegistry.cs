@@ -21,6 +21,8 @@ namespace InformationSystemDesign.Registers
             _storage.SaveUpdates();
         }
 
+        public BindingList<LocalityCard> GetLocalitiesFromStorage() => _storage.GetLocalitiesCards();
+
         public MunicipalCard GetCard(object cardId) => _storage.GetMunicipalCard((int)cardId);
         public BindingList<MunicipalCard> GetCards(params Predicate<MunicipalCard>[] filters) => _storage.GetMunicipalCards();
 
@@ -32,10 +34,16 @@ namespace InformationSystemDesign.Registers
             card.Customer = (string)inputData[3];
         }
 
-        public MunicipalCard CreateCard(params object[] inputData) =>
-            new((DateTime)inputData[0],
+        public MunicipalCard CreateCard(params object[] inputData)
+        {
+            var municipalCard = new MunicipalCard((DateTime)inputData[0],
                 (DateTime)inputData[1],
                 (string)inputData[2],
-                (string)inputData[3]);
+                (string)inputData[3])
+            {
+                LocalityCards = (List<LocalityCard>)inputData[4]
+            };
+            return municipalCard;
+        }
     }
 }

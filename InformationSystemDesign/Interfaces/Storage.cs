@@ -1,11 +1,9 @@
 
-
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Drawing.Text;
 using Accessibility;
 using InformationSystemDesign.Cards;
-using InformationSystemDesign.Enumerators;
 using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Interfaces
@@ -21,6 +19,7 @@ namespace InformationSystemDesign.Interfaces
             _context.OrganizationCards.Load();
             _context.MunicipalCards.Load();
             _context.InspectionCards.Load();
+            _context.LocalityCards.Load();
         }
 
         public void AddAnimalCard(AnimalCard animalCard)
@@ -57,7 +56,6 @@ namespace InformationSystemDesign.Interfaces
         {
             _context.OrganizationCards.Remove(organizationCard);
             _context.SaveChanges();
-
         }
 
         public void SaveUpdates()
@@ -77,7 +75,7 @@ namespace InformationSystemDesign.Interfaces
         public BindingList<AnimalCard> GetAnimalCards() => _context.AnimalCards.Local.ToBindingList();
 
         public IEnumerable<InspectionCard> GetInspectionCardById(int id) =>
-            _context.InspectionCards.Local.Where(x => x.AnimalRegNumber == id);
+            _context.InspectionCards.Local.Where(x => x.InspectedAnimal.RegNumber == id);
 
         public BindingList<AnimalCard> GetAnimalCards(Predicate<AnimalCard>[] filters)
         {
@@ -87,5 +85,7 @@ namespace InformationSystemDesign.Interfaces
         public BindingList<MunicipalCard> GetMunicipalCards() => _context.MunicipalCards.Local.ToBindingList();
 
         public BindingList<OrganizationCard> GetOrganizationCards() => _context.OrganizationCards.Local.ToBindingList();
+
+        public BindingList<LocalityCard> GetLocalitiesCards() => _context.LocalityCards.Local.ToBindingList();
     }
 }

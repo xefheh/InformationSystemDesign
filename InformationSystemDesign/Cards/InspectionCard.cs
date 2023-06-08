@@ -1,20 +1,16 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using InformationSystemDesign.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace InformationSystemDesign.Cards
 {
-    [PrimaryKey(nameof(InspectionNumber))]
     public class InspectionCard
     {
-        [Browsable(false)]
+        [Browsable(false), Key]
         public int InspectionNumber { get; set; }
 
-        [Browsable(false)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [ForeignKey("InspectedAnimal")]
-        public int AnimalRegNumber { get; set; }
         [Browsable(false)]
         public AnimalCard InspectedAnimal { get; set; }
         [DisplayName("Особенности поведения")]
@@ -47,7 +43,7 @@ namespace InformationSystemDesign.Cards
         public string DoctorPosition { get; set; }
         [DisplayName("Ветклиника, в которой проведён осмотр")]
         public string VetClinic { get; set; }
-        [DisplayName("Муниципальный контракт")]
-        public string MunicipalContract { get; set; }
+        [DisplayName("Номер муниципального контракта")]
+        public MunicipalCard MunicipalContract { get; set; }
     }
 }

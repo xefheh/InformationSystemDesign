@@ -9,10 +9,12 @@ namespace InformationSystemDesign.Forms
     public partial class AnimalRegistryForm : Form
     {
         private readonly IController<AnimalCard> _controller;
+        private readonly MunicipalRegistryController _municipalRegistryController;
+
         private BindingList<AnimalCard> _sourceList;
         private BindingList<AnimalCard> _view;
 
-        public AnimalRegistryForm(IController<AnimalCard> controller)
+        public AnimalRegistryForm(IController<AnimalCard> controller, MunicipalRegistryController municipalRegistryController)
         {
             InitializeComponent();
             _controller = controller;
@@ -20,6 +22,7 @@ namespace InformationSystemDesign.Forms
             _view = _sourceList;
             _registryView.DataSource = _view;
             _registryView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            _municipalRegistryController = municipalRegistryController;
         }
 
         private void _addButton_Click(object sender, EventArgs e)
@@ -100,7 +103,7 @@ namespace InformationSystemDesign.Forms
             var animalCard = GetCardFromSelectedRow();
             var inspectionCards =
                 ((AnimalRegistryController)_controller).GetInspectionCardByAnimalId(animalCard.RegNumber);
-            var inspectionForm = new InspectionForm(GetCardFromSelectedRow(), inspectionCards.ToList());
+            var inspectionForm = new InspectionForm(GetCardFromSelectedRow(), _municipalRegistryController);
             inspectionForm.ShowDialog();
             ((AnimalRegistryController)_controller).InvokeStorageUpdating();
         }
