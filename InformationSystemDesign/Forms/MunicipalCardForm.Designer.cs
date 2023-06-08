@@ -28,133 +28,145 @@
         /// </summary>
         private void InitializeComponent()
         {
-            _signPicker = new DateTimePicker();
-            _validatePicker = new DateTimePicker();
-            _executorBox = new TextBox();
-            _customerBox = new TextBox();
-            _signLabel = new Label();
-            _validateLabel = new Label();
-            _executerLabel = new Label();
-            _customerLabel = new Label();
-            _okButton = new Button();
-            _cancelButton = new Button();
-            _deleteButton = new Button();
-            SuspendLayout();
+            this._signPicker = new System.Windows.Forms.DateTimePicker();
+            this._validatePicker = new System.Windows.Forms.DateTimePicker();
+            this._executorBox = new System.Windows.Forms.TextBox();
+            this._customerBox = new System.Windows.Forms.TextBox();
+            this._signLabel = new System.Windows.Forms.Label();
+            this._validateLabel = new System.Windows.Forms.Label();
+            this._executerLabel = new System.Windows.Forms.Label();
+            this._customerLabel = new System.Windows.Forms.Label();
+            this._okButton = new System.Windows.Forms.Button();
+            this._cancelButton = new System.Windows.Forms.Button();
+            this._deleteButton = new System.Windows.Forms.Button();
+            this._cityButton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             // 
             // _signPicker
             // 
-            _signPicker.Location = new Point(122, 12);
-            _signPicker.Name = "_signPicker";
-            _signPicker.Size = new Size(200, 23);
-            _signPicker.TabIndex = 0;
+            this._signPicker.Location = new System.Drawing.Point(122, 12);
+            this._signPicker.Name = "_signPicker";
+            this._signPicker.Size = new System.Drawing.Size(200, 23);
+            this._signPicker.TabIndex = 0;
             // 
             // _validatePicker
             // 
-            _validatePicker.Location = new Point(122, 41);
-            _validatePicker.Name = "_validatePicker";
-            _validatePicker.Size = new Size(200, 23);
-            _validatePicker.TabIndex = 1;
+            this._validatePicker.Location = new System.Drawing.Point(122, 41);
+            this._validatePicker.Name = "_validatePicker";
+            this._validatePicker.Size = new System.Drawing.Size(200, 23);
+            this._validatePicker.TabIndex = 1;
             // 
             // _executorBox
             // 
-            _executorBox.Location = new Point(122, 70);
-            _executorBox.Name = "_executorBox";
-            _executorBox.Size = new Size(100, 23);
-            _executorBox.TabIndex = 2;
+            this._executorBox.Location = new System.Drawing.Point(122, 70);
+            this._executorBox.Name = "_executorBox";
+            this._executorBox.Size = new System.Drawing.Size(100, 23);
+            this._executorBox.TabIndex = 2;
             // 
             // _customerBox
             // 
-            _customerBox.Location = new Point(122, 99);
-            _customerBox.Name = "_customerBox";
-            _customerBox.Size = new Size(100, 23);
-            _customerBox.TabIndex = 3;
+            this._customerBox.Location = new System.Drawing.Point(122, 99);
+            this._customerBox.Name = "_customerBox";
+            this._customerBox.Size = new System.Drawing.Size(100, 23);
+            this._customerBox.TabIndex = 3;
             // 
             // _signLabel
             // 
-            _signLabel.AutoSize = true;
-            _signLabel.Location = new Point(12, 18);
-            _signLabel.Name = "_signLabel";
-            _signLabel.Size = new Size(105, 15);
-            _signLabel.TabIndex = 4;
-            _signLabel.Text = "Дата заключения:";
+            this._signLabel.AutoSize = true;
+            this._signLabel.Location = new System.Drawing.Point(12, 18);
+            this._signLabel.Name = "_signLabel";
+            this._signLabel.Size = new System.Drawing.Size(105, 15);
+            this._signLabel.TabIndex = 4;
+            this._signLabel.Text = "Дата заключения:";
             // 
             // _validateLabel
             // 
-            _validateLabel.AutoSize = true;
-            _validateLabel.Location = new Point(12, 47);
-            _validateLabel.Name = "_validateLabel";
-            _validateLabel.Size = new Size(87, 15);
-            _validateLabel.TabIndex = 5;
-            _validateLabel.Text = "Дата действия:";
+            this._validateLabel.AutoSize = true;
+            this._validateLabel.Location = new System.Drawing.Point(12, 47);
+            this._validateLabel.Name = "_validateLabel";
+            this._validateLabel.Size = new System.Drawing.Size(87, 15);
+            this._validateLabel.TabIndex = 5;
+            this._validateLabel.Text = "Дата действия:";
             // 
             // _executerLabel
             // 
-            _executerLabel.AutoSize = true;
-            _executerLabel.Location = new Point(12, 73);
-            _executerLabel.Name = "_executerLabel";
-            _executerLabel.Size = new Size(84, 15);
-            _executerLabel.TabIndex = 6;
-            _executerLabel.Text = "Исполнитель:";
+            this._executerLabel.AutoSize = true;
+            this._executerLabel.Location = new System.Drawing.Point(12, 73);
+            this._executerLabel.Name = "_executerLabel";
+            this._executerLabel.Size = new System.Drawing.Size(84, 15);
+            this._executerLabel.TabIndex = 6;
+            this._executerLabel.Text = "Исполнитель:";
             // 
             // _customerLabel
             // 
-            _customerLabel.AutoSize = true;
-            _customerLabel.Location = new Point(12, 102);
-            _customerLabel.Name = "_customerLabel";
-            _customerLabel.Size = new Size(60, 15);
-            _customerLabel.TabIndex = 7;
-            _customerLabel.Text = "Заказчик:";
+            this._customerLabel.AutoSize = true;
+            this._customerLabel.Location = new System.Drawing.Point(12, 102);
+            this._customerLabel.Name = "_customerLabel";
+            this._customerLabel.Size = new System.Drawing.Size(60, 15);
+            this._customerLabel.TabIndex = 7;
+            this._customerLabel.Text = "Заказчик:";
             // 
             // _okButton
             // 
-            _okButton.DialogResult = DialogResult.OK;
-            _okButton.Location = new Point(12, 134);
-            _okButton.Name = "_okButton";
-            _okButton.Size = new Size(75, 23);
-            _okButton.TabIndex = 8;
-            _okButton.Text = "ОК";
-            _okButton.UseVisualStyleBackColor = true;
+            this._okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this._okButton.Location = new System.Drawing.Point(12, 134);
+            this._okButton.Name = "_okButton";
+            this._okButton.Size = new System.Drawing.Size(75, 23);
+            this._okButton.TabIndex = 8;
+            this._okButton.Text = "ОК";
+            this._okButton.UseVisualStyleBackColor = true;
             // 
             // _cancelButton
             // 
-            _cancelButton.DialogResult = DialogResult.Cancel;
-            _cancelButton.Location = new Point(247, 134);
-            _cancelButton.Name = "_cancelButton";
-            _cancelButton.Size = new Size(75, 23);
-            _cancelButton.TabIndex = 9;
-            _cancelButton.Text = "Отмена";
-            _cancelButton.UseVisualStyleBackColor = true;
+            this._cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._cancelButton.Location = new System.Drawing.Point(247, 134);
+            this._cancelButton.Name = "_cancelButton";
+            this._cancelButton.Size = new System.Drawing.Size(75, 23);
+            this._cancelButton.TabIndex = 9;
+            this._cancelButton.Text = "Отмена";
+            this._cancelButton.UseVisualStyleBackColor = true;
             // 
             // _deleteButton
             // 
-            _deleteButton.Location = new Point(342, 12);
-            _deleteButton.Name = "_deleteButton";
-            _deleteButton.Size = new Size(149, 23);
-            _deleteButton.TabIndex = 10;
-            _deleteButton.Text = "Удалить карточку";
-            _deleteButton.UseVisualStyleBackColor = true;
-            _deleteButton.Click += _deleteButton_Click;
+            this._deleteButton.Location = new System.Drawing.Point(342, 12);
+            this._deleteButton.Name = "_deleteButton";
+            this._deleteButton.Size = new System.Drawing.Size(149, 23);
+            this._deleteButton.TabIndex = 10;
+            this._deleteButton.Text = "Удалить карточку";
+            this._deleteButton.UseVisualStyleBackColor = true;
+            // 
+            // _cityButton
+            // 
+            this._cityButton.Location = new System.Drawing.Point(342, 41);
+            this._cityButton.Name = "_cityButton";
+            this._cityButton.Size = new System.Drawing.Size(149, 23);
+            this._cityButton.TabIndex = 11;
+            this._cityButton.Text = "Города";
+            this._cityButton.UseVisualStyleBackColor = true;
+            this._cityButton.Click += new System.EventHandler(this._cityButton_Click);
             // 
             // MunicipalCardForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(503, 248);
-            Controls.Add(_deleteButton);
-            Controls.Add(_cancelButton);
-            Controls.Add(_okButton);
-            Controls.Add(_customerLabel);
-            Controls.Add(_executerLabel);
-            Controls.Add(_validateLabel);
-            Controls.Add(_signLabel);
-            Controls.Add(_customerBox);
-            Controls.Add(_executorBox);
-            Controls.Add(_validatePicker);
-            Controls.Add(_signPicker);
-            Name = "MunicipalCardForm";
-            Text = "MunicipalCardForm";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(503, 248);
+            this.Controls.Add(this._cityButton);
+            this.Controls.Add(this._deleteButton);
+            this.Controls.Add(this._cancelButton);
+            this.Controls.Add(this._okButton);
+            this.Controls.Add(this._customerLabel);
+            this.Controls.Add(this._executerLabel);
+            this.Controls.Add(this._validateLabel);
+            this.Controls.Add(this._signLabel);
+            this.Controls.Add(this._customerBox);
+            this.Controls.Add(this._executorBox);
+            this.Controls.Add(this._validatePicker);
+            this.Controls.Add(this._signPicker);
+            this.Name = "MunicipalCardForm";
+            this.Text = "MunicipalCardForm";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
@@ -170,5 +182,6 @@
         private Button _okButton;
         private Button _cancelButton;
         private Button _deleteButton;
+        private Button _cityButton;
     }
 }

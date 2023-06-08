@@ -5,7 +5,7 @@ using InformationSystemDesign.Registers;
 
 namespace InformationSystemDesign.Controllers
 {
-    internal class MunicipalRegistryController : IController<MunicipalCard>
+    public class MunicipalRegistryController : IController<MunicipalCard>
     {
         private readonly IRegistry<MunicipalCard> _municipalRegistry;
         private readonly IPermissionAction _permissionAction;
@@ -37,6 +37,9 @@ namespace InformationSystemDesign.Controllers
             if (!_permissionAction.CanUpdateCard()) throw new PermissionException("Can`t update card!");
             _municipalRegistry.UpdateCard(card, inputData);
         }
+
+        public BindingList<LocalityCard> GetLocalities() =>
+            ((MunicipalRegistry)_municipalRegistry).GetLocalitiesFromStorage();
 
         public BindingList<MunicipalCard> GetCards(params Predicate<MunicipalCard>[] inputData) => _municipalRegistry.GetCards();
     }

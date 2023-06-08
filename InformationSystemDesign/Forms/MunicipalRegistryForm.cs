@@ -9,19 +9,21 @@ namespace InformationSystemDesign.Forms
     {
         private readonly IController<MunicipalCard> _controller;
         private readonly BindingList<MunicipalCard> _sourceList;
+        private readonly BindingList<LocalityCard> _localityList;
 
         public MunicipalRegistryForm(IController<MunicipalCard> controller)
         {
             InitializeComponent();
             _controller = controller;
             _sourceList = _controller.GetCards();
+            _localityList = ((MunicipalRegistryController)_controller).GetLocalities();
             _registryView.DataSource = _sourceList;
             _registryView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void _addButton_Click(object sender, EventArgs e)
         {
-            var municipalCardForm = new MunicipalCardForm();
+            var municipalCardForm = new MunicipalCardForm(((MunicipalRegistryController)_controller).GetLocalities());
             if (municipalCardForm.ShowDialog() != DialogResult.OK) return;
             try
             {

@@ -12,6 +12,8 @@ namespace InformationSystemDesign.Interfaces
         public DbSet<User> Users { get; set; }
         public DbSet<InspectionCard> InspectionCards { get; set; }
 
+        public DbSet<LocalityCard> LocalityCards { get; set; }
+
         public InspectionContext() => Database.EnsureCreated();
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
