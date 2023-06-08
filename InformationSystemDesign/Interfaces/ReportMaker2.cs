@@ -7,15 +7,13 @@ namespace InformationSystemDesign.Interfaces
     internal class ReportMaker2
     {
         private readonly AnimalRegistryController _controller;
-        private readonly MunicipalRegistryController _controller2;
 
-        public ReportMaker2(AnimalRegistryController controller, MunicipalRegistryController controller2)
+        public ReportMaker2(AnimalRegistryController controller)
         {
             _controller = controller;
-            _controller2 = controller2;
         }
 
-        public List<ReportValue2> MakeReport(DateTime startTime, DateTime endTime)
+        public Report MakeReport(DateTime startTime, DateTime endTime)
         {
             var animalCards = _controller.GetCards().ToList();
             var inspectionCards =
@@ -41,8 +39,8 @@ namespace InformationSystemDesign.Interfaces
                     ));
                 }  
             }
-
-            return result;
+            var report = new Report(result, finishPrice);
+            return report;
         }
 
         private Dictionary<string, Dictionary<string, (double, int)>> CalculateDiseasesPriceAndCount(List<AnimalCard> cards,
@@ -57,7 +55,7 @@ namespace InformationSystemDesign.Interfaces
                 for (int j = 0; j < diseases.Count(); j++)
                 {
                     if (!dictionary[cards[i].GetLocale()].ContainsKey(diseases[i])) dictionary[cards[i].GetLocale()].Add(diseases[i], (0, 0));
-                    var price = currentInspectionCards[j].GetMunicipalCard(_controller2).GetPrice(cards[i].GetLocale());
+                    var price = currentInspectionCards[j].GetMunicipalCard().GetPrice(cards[i].GetLocale());
                     var priceAndCount = dictionary[cards[i].GetLocale()][diseases[i]];
                     priceAndCount.Item1 += price;
                     priceAndCount.Item2 += 1;
@@ -88,9 +86,9 @@ namespace InformationSystemDesign.Interfaces
 
     public static class InspectionCardExtensions
     {
-        internal static MunicipalCard GetMunicipalCard(this InspectionCard card, MunicipalRegistryController controller)
+        internal static MunicipalCard GetMunicipalCard(this InspectionCard card)
         {
-            return controller.GetCard(card.MunicipalContract);
+            return new MunicipalCard();
         }
     }
 
@@ -125,6 +123,18 @@ namespace InformationSystemDesign.Interfaces
             DiseasesCount = diseasesCount;
             Price = price;
             Disease = disease;
+        }
+    }
+
+    public class Report 
+    {
+        public List<ReportValue2>  ReportValues { get; set; }
+        public double FinishPrice { get; set; }
+
+        public Report(List<ReportValue2> reportValues, double finishPrice)
+        {
+            ReportValues = reportValues;
+            FinishPrice = finishPrice;
         }
     }
 }
