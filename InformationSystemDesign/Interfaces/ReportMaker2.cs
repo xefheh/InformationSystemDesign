@@ -88,7 +88,7 @@ namespace InformationSystemDesign.Interfaces
     {
         internal static MunicipalCard GetMunicipalCard(this InspectionCard card)
         {
-            return new MunicipalCard();
+            throw new NotImplementedException();    
         }
     }
 
