@@ -1,4 +1,4 @@
-﻿namespace InformationSystemDesign.Forms
+﻿namespace InformationSystemDesign.Forms.InspectionForms
 {
     partial class InspectionCardForm
     {

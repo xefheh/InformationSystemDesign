@@ -3,7 +3,7 @@ using InformationSystemDesign.Cards;
 using InformationSystemDesign.Exceptions;
 using InformationSystemDesign.Interfaces;
 
-namespace InformationSystemDesign.Forms
+namespace InformationSystemDesign.Forms.InspectionForms
 {
     public partial class InspectionRegistryForm : Form
     {
