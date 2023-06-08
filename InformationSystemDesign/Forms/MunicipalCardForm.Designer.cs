@@ -166,7 +166,24 @@
             this.Text = "MunicipalCardForm";
             this.ResumeLayout(false);
             this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(503, 248);
+            Controls.Add(_deleteButton);
+            Controls.Add(_cancelButton);
+            Controls.Add(_okButton);
+            Controls.Add(_customerLabel);
+            Controls.Add(_executerLabel);
+            Controls.Add(_validateLabel);
+            Controls.Add(_signLabel);
+            Controls.Add(_customerBox);
+            Controls.Add(_executorBox);
+            Controls.Add(_validatePicker);
+            Controls.Add(_signPicker);
+            Name = "MunicipalCardForm";
+            Text = "Муниципальная карточка";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

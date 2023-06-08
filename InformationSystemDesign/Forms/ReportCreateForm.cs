@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using InformationSystemDesign.Controllers;
+﻿using InformationSystemDesign.Controllers;
 using InformationSystemDesign.Interfaces;
 
 namespace InformationSystemDesign.Forms
@@ -24,9 +15,11 @@ namespace InformationSystemDesign.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var reportMaker = new ReportMaker(_controller);
+            var reportMaker = new ReportMaker2(_controller);
             var report = reportMaker.MakeReport(dateTimePicker1.Value, dateTimePicker2.Value);
-            new ReportForm(report).ShowDialog();
+            var reportValues = report.ReportValues;
+            var finishPrice = report.FinishPrice;
+            new ReportForm(reportValues, finishPrice).ShowDialog();
         }
     }
 }

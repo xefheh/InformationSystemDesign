@@ -97,7 +97,7 @@
             Controls.Add(_addButton);
             Controls.Add(_registryView);
             Name = "OrganizationRegistryForm";
-            Text = "OrganizationRegistryForm";
+            Text = "Реестр организаций";
             ((System.ComponentModel.ISupportInitialize)_registryView).EndInit();
             ResumeLayout(false);
             PerformLayout();

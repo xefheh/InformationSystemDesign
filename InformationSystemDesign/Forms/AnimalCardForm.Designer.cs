@@ -319,7 +319,7 @@
             Controls.Add(_addressTextBox);
             Controls.Add(_labelAddress);
             Name = "AnimalCardForm";
-            Text = "AnimalCardForm";
+            Text = "Карточка животного ";
             _ownerFeaturesGroup.ResumeLayout(false);
             _ownerFeaturesGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)_showBox).EndInit();

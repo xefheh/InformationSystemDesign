@@ -111,7 +111,7 @@
             Controls.Add(_addButton);
             Controls.Add(_registryView);
             Name = "AnimalRegistryForm";
-            Text = "AnimalRegistryForm";
+            Text = "Реестр животных";
             ((System.ComponentModel.ISupportInitialize)_registryView).EndInit();
             ResumeLayout(false);
             PerformLayout();

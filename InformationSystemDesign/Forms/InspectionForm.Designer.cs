@@ -63,7 +63,7 @@
             Controls.Add(_addInspectionButton);
             Controls.Add(_inspectionGridView);
             Name = "InspectionForm";
-            Text = "InspectionForm";
+            Text = "Карточки осмотра";
             ((System.ComponentModel.ISupportInitialize)_inspectionGridView).EndInit();
             ResumeLayout(false);
         }

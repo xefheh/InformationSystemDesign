@@ -19,6 +19,7 @@ namespace InformationSystemDesign.Controllers
         public void AddCard(params object[] inputData)
         {
             if (!_permissionAction.CanAddCard()) throw new PermissionException("Can`t add new card!");
+            if (!IsValidCard(inputData)) throw new ValidException("No valid card!");
             _animalRegistry.AddCard(inputData);
         }
 
@@ -34,7 +35,20 @@ namespace InformationSystemDesign.Controllers
         public void UpdateCard(AnimalCard card, params object[] inputData)
         {
             if (!_permissionAction.CanUpdateCard()) throw new PermissionException("Can`t update card!");
+            if (!IsValidCard(inputData)) throw new ValidException("No valid card!");
             _animalRegistry.UpdateCard(card, inputData);
+        }
+
+        private bool IsValidCard(params object[] inputData)
+        {
+            foreach (var property in inputData)
+            {
+                if (property.ToString() == "")
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public BindingList<AnimalCard> GetCards(params Predicate<AnimalCard>[] inputData) => _animalRegistry.GetCards(inputData);
@@ -44,9 +58,5 @@ namespace InformationSystemDesign.Controllers
         public IEnumerable<InspectionCard> GetInspectionCardByAnimalId(int id) =>
             (((AnimalRegistry)_animalRegistry).GetInspectionCardsByAnimalId(id));
 
-    }
-    public class PermissionException : Exception
-    {
-        public PermissionException(string message) : base(message) { }
-    }
+    }   
 }

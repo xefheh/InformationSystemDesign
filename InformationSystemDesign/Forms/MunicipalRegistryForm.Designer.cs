@@ -96,7 +96,7 @@
             Controls.Add(_addButton);
             Controls.Add(_registryView);
             Name = "MunicipalRegistryForm";
-            Text = "MunicipalRegistryForm";
+            Text = "Реестр муниципальных карточек";
             ((System.ComponentModel.ISupportInitialize)_registryView).EndInit();
             ResumeLayout(false);
             PerformLayout();

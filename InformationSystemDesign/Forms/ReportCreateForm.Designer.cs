@@ -66,7 +66,7 @@
             Controls.Add(dateTimePicker2);
             Controls.Add(dateTimePicker1);
             Name = "ReportCreateForm";
-            Text = "ReportCreateForm";
+            Text = "Формирование  отчёта";
             ResumeLayout(false);
         }
 
